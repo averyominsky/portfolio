@@ -894,15 +894,39 @@ background: #dcecfa;
 
 <script>
   // ---------- Intro fade ----------
-  const intro = document.getElementById('intro');
-  function dismissIntro(){
-    intro.classList.add('fade');
-    setTimeout(()=>{ intro.style.display = 'none'; }, 1000);
-  }
+// ---------- Intro fade ----------
+const intro = document.getElementById('intro');
+
+function dismissIntro(){
+
+  intro.classList.add('fade');
+
+  setTimeout(() => {
+    intro.style.display = 'none';
+  }, 1000);
+
+}
+
+// Only show intro on the first visit
+if (sessionStorage.getItem('introShown')) {
+
+  intro.style.display = 'none';
+
+} else {
+
+  sessionStorage.setItem('introShown', 'true');
+
   intro.addEventListener('click', dismissIntro);
-  intro.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' ') dismissIntro(); });
+
+  intro.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      dismissIntro();
+    }
+  });
+
   setTimeout(dismissIntro, 2200);
 
+}
   // ---------- Mobile nav ----------
   const menuBtn = document.getElementById('menuBtn');
   const mobileNav = document.getElementById('mobileNav');
