@@ -3,672 +3,1448 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Avery Ominsky — Portfolio</title>
-<meta name="description" content="Character Identity System — a pitchbook of three illustrated character studies.">
+
+<title>Studio 54 Culture — Avery Ominsky</title>
+
+<meta name="description" content="Character Identity System — a series of illustrated character studies inspired by Studio 54.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
 <link rel="icon" type="image/png" href="circle.jpg">
 
-
-<meta property="og:image" content="seaartwork.jpg">
-
-<meta property="og:description" content="Communication Design student exploring UI/UX, art, and technology..">
-
-
 <style>
-  :root{
-    --bg:#fffdfc;
-    --ink:#1c1210;
-    --muted:#8a7a76;
-    --line:#efe3e0;
-    --red:#c8351f;
-    --red-deep:#9c2416;
-    --red-tint:#fbe2dd;
-    --serif:'Fraunces', serif;
-    --sans:'DM Sans', sans-serif;
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:var(--sans);
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:inherit; text-decoration:none;}
-  img{max-width:100%; display:block;}
 
-  /* ---------- Topbar ---------- */
-  .topbar{
-    position:sticky; top:0; z-index:20;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 32px;
-    background:rgba(255,253,252,0.85);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .logo{ font-family:var(--serif); font-weight:500; font-size:22px; }
-  .back-link{
-    font-size:14px; font-weight:500; color:var(--muted);
-    display:flex; align-items:center; gap:6px;
-    transition:color .2s ease;
-  }
-  .back-link:hover{color:var(--red);}
+:root {
+  --bg: #fffdfc;
+  --ink: #1c1210;
+  --muted: #8a7a76;
+  --line: #efe3e0;
+  --red: #c8351f;
+  --red-deep: #9c2416;
+  --red-tint: #fbe2dd;
+  --soft: #f5efed;
+  --white: #ffffff;
 
-  /* ---------- Header ---------- */
-  .case-header{
-    max-width:760px;
-    margin:0 auto;
-    padding:64px 32px 0;
-  }
-  .case-meta{
-    font-size:12px; letter-spacing:1.2px; text-transform:uppercase;
-    color:var(--muted); margin-bottom:10px;
-  }
-  .case-title{
-    font-family:var(--serif); font-optical-sizing:auto; font-weight:500;
-    font-size:clamp(28px, 4.4vw, 42px); line-height:1.25; margin:0 0 22px;
-  }
-  .case-header p{
-    font-size:15.5px; line-height:1.75; color:var(--muted); margin:0 0 12px; max-width:620px;
-  }
-
-  /* ---------- Info row ---------- */
-  .info-row{
-    max-width:760px; margin:40px auto 0; padding:0 32px;
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:24px;
-  }
-  .info-row .label{
-    font-size:11px; letter-spacing:1.2px; text-transform:uppercase;
-    color:var(--muted); margin-bottom:6px;
-  }
-  .info-row .value{ font-size:15px; line-height:1.6; }
-
-  /* ---------- Artworks ---------- */
-  .artworks{
-    max-width:760px; margin:70px auto 0; padding:0 32px;
-    display:flex; flex-direction:column; gap:80px;
-  }
-  .artwork{
-    display:flex; flex-direction:column; gap:20px;
-  }
-  .artwork-number{
-    font-family:var(--serif); font-style:italic; color:var(--red);
-    font-size:14px; letter-spacing:.3px;
-  }
- .artwork-media{
-  border-radius:16px;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  cursor:pointer;
+  --serif: "Fraunces", serif;
+  --sans: "DM Sans", sans-serif;
 }
 
-.artwork-media img{
-  width:100%;
-  height:auto;
-  display:block;
+* {
+  box-sizing: border-box;
 }
 
-  .artwork-media input[type="file"]{
-    position:absolute; inset:0; width:100%; height:100%;
-    opacity:0; cursor:pointer;
-  }
-  .artwork-body h2{
-    font-family:var(--serif); font-optical-sizing:auto; font-weight:500;
-    font-size:22px; margin:0 0 10px;
-  }
-  .artwork-body p{
-    font-size:14.5px; line-height:1.75; color:var(--muted); margin:0;
-    max-width:600px;
-  }
-  .artwork-tags{
-    display:flex; gap:8px; flex-wrap:wrap; margin-top:14px;
-  }
-  .artwork-tags span{
-    font-size:11px; letter-spacing:.4px; text-transform:uppercase;
-    color:var(--red-deep); background:var(--red-tint);
-    padding:5px 10px; border-radius:20px;
-  }
-
-  /* ---------- Process / gallery sections (shared) ---------- */
-  .process-section, .gallery-section{ max-width:760px; margin:100px auto 0; padding:0 32px; }
-  .gallery-section:last-of-type{ margin-bottom:110px; }
-  .process-head{
-    display:flex; align-items:baseline; justify-content:space-between; gap:16px;
-    padding-bottom:16px; margin-bottom:24px;
-    border-bottom:1px solid var(--line);
-  }
-  .process-title{ font-family:var(--serif); font-weight:600; font-size:19px; }
-  .process-project{ font-style:italic; color:var(--muted); font-size:14px; }
-  .process-eyebrow{
-    font-size:11px; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted);
-    white-space:nowrap;
-  }
-  .process-images{
-    display:grid; grid-template-columns:1fr 1fr; gap:12px;
-  }
-  .process-images.gallery-grid .process-img:nth-child(3){
-    grid-column:1 / -1; aspect-ratio:16/7.5;
-  }
-  .process-img{
-    position:relative; border-radius:10px; overflow:hidden;
-    aspect-ratio:4/3;
-    display:flex; align-items:center; justify-content:center;
-    cursor:pointer;
-  }
-  .process-img img.uploaded-photo{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-  }
-  .process-img input[type="file"]{
-    position:absolute; inset:0; width:100%; height:100%;
-    opacity:0; cursor:pointer;
-  }
-  .process-img svg.deco-icon{ width:36px; height:36px; opacity:0.55; pointer-events:none; }
-  .process-badge{
-    position:absolute; top:10px; left:10px;
-    width:26px; height:26px;
-    background:rgba(20,14,13,0.65); color:#fff;
-    border-radius:6px;
-    display:flex; align-items:center; justify-content:center;
-    font-size:12px; font-weight:600;
-    z-index:1;
-  }
-  .process-caption{
-    display:grid; grid-template-columns:1.1fr 1fr; gap:28px;
-    margin-top:20px;
-  }
-  .process-caption .desc{ font-size:14px; line-height:1.7; color:var(--muted); margin:0; }
-  .process-caption ol{ margin:0; padding:0; list-style:none; }
-  .process-caption li{
-    display:flex; gap:8px; font-size:14px; color:var(--ink);
-    margin-bottom:8px; line-height:1.5;
-  }
-  .process-caption li .n{ font-weight:700; flex-shrink:0; }
-
-  /* Research grid — 5 spaces: one feature + four supporting */
-  .grid-5{
-    grid-template-columns:repeat(4, 1fr);
-  }
-  .grid-5 .process-img:nth-child(1){
-    grid-column:1 / 3; grid-row:1 / 3; aspect-ratio:auto;
-  }
-  .grid-5 .process-img:nth-child(n+2){
-    grid-column:span 2; aspect-ratio:4/3;
-  }
-  .grid-5 .process-img:nth-child(2){ grid-column:3 / 5; }
-  .grid-5 .process-img:nth-child(3){ grid-column:3 / 5; }
-
-  /* Process-work grid — 4 spaces, even 2x2 */
-  .grid-4{
-    grid-template-columns:repeat(2, 1fr);
-  }
-
-  /* Development grids — 3 spaces, even row */
-  .grid-3{
-    grid-template-columns:repeat(3, 1fr);
-  }
-
-  @media (max-width:640px){
-    .info-row{ grid-template-columns:1fr 1fr; row-gap:24px; }
-    .process-images{ grid-template-columns:1fr; }
-    .grid-5, .grid-4, .grid-3{ grid-template-columns:1fr; }
-    .grid-5 .process-img:nth-child(1){ grid-column:1; grid-row:auto; }
-    .grid-5 .process-img:nth-child(2), .grid-5 .process-img:nth-child(3){ grid-column:1; }
-    .process-caption{ grid-template-columns:1fr; }
-    .artworks{ gap:56px; }
-  }
-
-
-
-
-
-
-
-
-
-/* ---------- Research Grid ---------- */
-.grid-5{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-}
-.grid-5 .process-img{
-  flex:1 1 calc(33.333% - 8px);
-}
-.grid-5 .process-img.vertical{
-  aspect-ratio:3/4;
-}
-.grid-5 .process-img.horizontal{
-  aspect-ratio:4/3;
-}
-#researchImages .process-img img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
+html {
+  scroll-behavior: smooth;
 }
 
-@media (max-width:640px){
-  .grid-5 .process-img{
-    flex:1 1 100%;
-  }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 
+/* =========================
+   TOP BAR
+========================= */
 
-/* ---------- Source links ---------- */
-.source-links{
-  display:flex; gap:20px; flex-wrap:wrap;
-  margin-top:18px;
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 32px;
+
+  background: rgba(255, 253, 252, 0.85);
+  backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid var(--line);
 }
-.source-link{
-  display:flex; align-items:center; gap:8px;
+
+.logo {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: 0.2px;
 }
-.source-icon{
-  width:22px; height:22px; border-radius:6px;
-  display:flex; align-items:center; justify-content:center;
-  font-family:var(--serif); font-weight:600; font-size:11px;
-  color:#fff; flex-shrink:0;
+
+.desktop-nav {
+  display: flex;
+  gap: 28px;
+  font-size: 14px;
+  font-weight: 500;
 }
-.source-text{ display:flex; flex-direction:column; gap:1px; }
-.source-name{
-  display:flex; align-items:center; gap:4px;
-  font-size:12.5px; font-weight:500; color:var(--ink);
+
+.desktop-nav a {
+  position: relative;
+  padding: 4px 0;
+  color: var(--muted);
+  transition: color 0.2s ease;
 }
-.source-name svg{ width:10px; height:10px; color:var(--muted); }
-.source-sub{
-  font-size:10px; letter-spacing:.3px; text-transform:uppercase;
-  color:var(--muted);
+
+.desktop-nav a:hover {
+  color: var(--ink);
 }
-.source-link:hover .source-name{ color:var(--red); }
+
+.desktop-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+
+  width: 0%;
+  height: 2px;
+
+  background: var(--red);
+
+  transition: width 0.25s ease;
+}
+
+.desktop-nav a:hover::after {
+  width: 100%;
+}
 
 
+/* MOBILE MENU */
 
-.gallery-grid {
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:12px;
-  align-items:start;   /* ← add this line */
+.menu-btn {
+  display: none;
+
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+
+  width: 38px;
+  height: 38px;
+
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
 }
+
+.menu-btn span,
+.menu-btn span::before,
+.menu-btn span::after {
+  content: '';
+  display: block;
+
+  width: 16px;
+  height: 2px;
+
+  background: var(--ink);
+
+  position: relative;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.menu-btn span::before {
+  position: absolute;
+  top: -5px;
+}
+
+.menu-btn span::after {
+  position: absolute;
+  top: 5px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+
+  .topbar {
+    padding: 18px 20px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .menu-btn {
+    display: flex;
+  }
+
+}
+
+
+/* =========================
+   CASE HEADER
+========================= */
+
+.case-header {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 105px 28px 70px;
+}
+
+.case-header > .back-link {
+  display: inline-block;
+  margin-bottom: 48px;
+}
+
+.case-title {
+  max-width: 800px;
+
+  margin: 0 0 28px;
+
+  font-family: var(--serif);
+  font-size: clamp(48px, 7vw, 78px);
+  font-weight: 400;
+
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.case-header p {
+  max-width: 700px;
+
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 19px;
+  line-height: 1.55;
+}
+
+
+/* =========================
+   ROTATING GALLERY
+========================= */
+
+.rotating-gallery {
+  width: 80%;
+  max-width: 700px;
+  height: 520px;
+
+  margin: 0 auto 90px;
+
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 20px;
+}
+
+.rotating-gallery img {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0;
+
+  animation: rotateGallery 12s infinite;
+}
+
+.rotating-gallery img:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.rotating-gallery img:nth-child(2) {
+  animation-delay: 4s;
+}
+
+.rotating-gallery img:nth-child(3) {
+  animation-delay: 8s;
+}
+
+@keyframes rotateGallery {
+
+  0% {
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  38% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
+}
+
+
+/* =========================
+   INFO ROW
+========================= */
+
+.info-row {
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  padding: 25px 28px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.info-item {
+  padding-right: 20px;
+}
+
+.info-label {
+  margin-bottom: 5px;
+
+  color: var(--muted);
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.info-value {
+  font-size: 14px;
+}
+
+
+/* =========================
+   SECTION SYSTEM
+========================= */
+
+.section {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 115px 28px 0;
+}
+
+.section-label {
+  margin-bottom: 14px;
+
+  color: var(--red);
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.section h2 {
+  margin: 0 0 22px;
+
+  font-family: var(--serif);
+  font-size: clamp(35px, 5vw, 53px);
+  font-weight: 400;
+
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.section p {
+  max-width: 680px;
+
+  margin: 0 0 20px;
+
+  color: #514643;
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* =========================
+   ARTWORKS
+========================= */
+
+.artworks {
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding: 115px 28px 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 110px;
+}
+
+.artwork {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.artwork-number {
+  color: var(--red);
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.artwork-media {
+  width: 100%;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  cursor: pointer;
+}
+
+.artwork-media img {
+  width: 100%;
+  height: auto;
+}
+
+.artwork-body {
+  max-width: 760px;
+}
+
+.artwork-body h2 {
+  margin: 0 0 18px;
+
+  font-family: var(--serif);
+  font-size: 38px;
+  font-weight: 400;
+
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.artwork-body p {
+  max-width: 680px;
+
+  margin: 0 0 20px;
+
+  color: #514643;
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* =========================
+   PROCESS SECTIONS
+========================= */
+
+.process-section,
+.gallery-section {
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding: 120px 28px 0;
+}
+
+.process-heading {
+  max-width: 760px;
+
+  margin-bottom: 55px;
+}
+
+.process-heading h2 {
+  margin: 0 0 20px;
+
+  font-family: var(--serif);
+  font-size: clamp(35px, 5vw, 53px);
+  font-weight: 400;
+
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.process-heading p {
+  max-width: 680px;
+
+  margin: 0;
+
+  color: #514643;
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* =========================
+   PROCESS GRID
+========================= */
+
+.process-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
 .process-box {
-  position:relative;
-  overflow:hidden;
-  border-radius:10px;
-}
+  position: relative;
 
-.process-box .n {
-  position:absolute;
-  top:10px;
-  right:10px;
-  width:26px;
-  height:26px;
-  background:rgba(20,14,13,0.65);
-  color:#fff;
-  border-radius:6px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:12px;
-  font-weight:600;
-  z-index:1;
+  overflow: hidden;
+
+  border-radius: 16px;
 }
 
 .process-box img {
-  width:100%;
-  height:auto;
-  display:block;
+  width: 100%;
+  height: auto;
+}
+
+.process-box .n {
+  position: absolute;
+
+  top: 12px;
+  right: 12px;
+
+  width: 28px;
+  height: 28px;
+
+  background: rgba(20,14,13,0.65);
+
+  color: white;
+
+  border-radius: 7px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  z-index: 1;
+}
+
+.process-caption {
+  margin-top: 25px;
+
+  max-width: 760px;
+}
+
+.process-caption ol {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.process-caption li {
+  display: flex;
+
+  gap: 10px;
+
+  margin-bottom: 10px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.process-caption li .n {
+  color: var(--ink);
+  font-weight: 600;
 }
 
 
+/* =========================
+   RESEARCH
+========================= */
 
-/* ---------- Gallery — masonry, shape-of-image ---------- */
-.gallery-masonry{
-  columns:2 220px;
-  column-gap:12px;
-}
-.gallery-masonry .gallery-item{
-  break-inside:avoid;
-  margin-bottom:12px;
-  border-radius:10px;
-  overflow:hidden;
-}
-.gallery-masonry .gallery-item img{
-  width:100%;
-  height:auto;
-  display:block;
+.research-section {
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding: 120px 28px 0;
 }
 
-@media (max-width:640px){
-  .gallery-masonry{ columns:1; }
+.research-heading {
+  max-width: 760px;
+
+  margin-bottom: 55px;
+}
+
+.research-heading h2 {
+  margin: 0 0 20px;
+
+  font-family: var(--serif);
+  font-size: clamp(35px, 5vw, 53px);
+  font-weight: 400;
+
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.research-heading p {
+  max-width: 680px;
+
+  margin: 0;
+
+  color: #514643;
+
+  font-size: 16px;
+  line-height: 1.7;
 }
 
 
+/* =========================
+   RESEARCH GRID
+========================= */
 
-/* ---------- Development Images ---------- */
+.grid-5 {
+  display: grid;
 
-#devAImages{
-  display:flex;
-  flex-direction:column;
-  gap:24px;
-  max-width:500px;
-  margin:0 auto;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+.grid-5 .process-img {
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.grid-5 .process-img img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 
+/* =========================
+   SOURCE LINKS
+========================= */
 
+.source-links {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+
+  margin-top: 25px;
+}
+
+.source-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.source-icon {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  color: white;
+
+  font-family: var(--serif);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.source-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.source-name {
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.source-sub {
+  color: var(--muted);
+
+  font-size: 10px;
+
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.source-link:hover .source-name {
+  color: var(--red);
+}
+
+
+/* =========================
+   MASONRY GALLERY
+========================= */
+
+.gallery-masonry {
+  columns: 2 220px;
+  column-gap: 18px;
+}
+
+.gallery-masonry .gallery-item {
+  break-inside: avoid;
+
+  margin-bottom: 18px;
+
+  overflow: hidden;
+
+  border-radius: 16px;
+}
+
+.gallery-masonry .gallery-item img {
+  width: 100%;
+  height: auto;
+}
+
+
+/* =========================
+   DEVELOPMENT
+========================= */
+
+.development-section {
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  padding: 120px 28px 0;
+}
+
+.development-heading {
+  margin-bottom: 55px;
+}
+
+.development-heading h2 {
+  margin: 0 0 20px;
+
+  font-family: var(--serif);
+  font-size: clamp(35px, 5vw, 53px);
+  font-weight: 400;
+
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.development-heading p {
+  color: #514643;
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+#devAImages {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  max-width: 600px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  margin-top: 130px;
+
+  padding: 30px 28px;
+
+  border-top: 1px solid var(--line);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: var(--muted);
+
+  font-size: 12px;
+}
+
+.footer-right {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-right a:hover {
+  color: var(--ink);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .topbar {
+    padding: 0 18px;
+  }
+
+  .case-header {
+    padding: 75px 20px 55px;
+  }
+
+  .case-header > .back-link {
+    margin-bottom: 35px;
+  }
+
+  .case-title {
+    font-size: 52px;
+  }
+
+  .case-header p {
+    font-size: 17px;
+  }
+
+  .rotating-gallery {
+    height: 350px;
+    margin: 0 20px 70px;
+    width: calc(100% - 40px);
+    border-radius: 14px;
+  }
+
+  .info-row {
+    margin: 0 20px;
+
+    padding: 22px 0;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+  }
+
+  .artworks,
+  .section,
+  .process-section,
+  .gallery-section,
+  .research-section,
+  .development-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .artworks {
+    gap: 75px;
+  }
+
+  .artwork-media {
+    border-radius: 14px;
+  }
+
+  .process-images,
+  .grid-5 {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-masonry {
+    columns: 1;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+
+}
 
 </style>
 </head>
+
+
 <body>
 
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
 <header class="topbar">
-  <a class="logo" href="index.html">Avery Ominsky</a>
-  <a class="back-link" href="index.html#work">← All work</a>
+
+  <a class="logo" href="index.html">
+    Avery Ominsky
+  </a>
+
+  <nav class="desktop-nav">
+    <a href="index.html#work">Work</a>
+    <a href="play.html">Play</a>
+    <a href="about.html">About</a>
+  </nav>
+
+<button class="menu-btn" id="menuBtn" aria-label="Open menu">
+    <span></span>
+  </button>
 </header>
 
+
+<main>
+
+
+<!-- =========================
+     CASE HEADER
+========================= -->
+
 <section class="case-header">
-  <div class="case-meta">ILLUSTRATION · 2026</div>
-  <h1 class="case-title">Character Identity System</h1>
-  <p>I researched Studio 54 and its influence on disco culture in 1970s New York. Inspired by its glamour, energy, and iconic fashion, I used bold silhouettes and expressive styling to capture the spirit of the disco era.</p>
+
+  <a class="back-link" href="index.html#work">
+    ← Back to Work
+  </a>
+
+  <h1 class="case-title">
+    Studio 54: <br> Culture & Character
+
+  </h1>
+
+  <p>
+    I researched Studio 54 and its influence on disco culture in 1970s New York.
+    Inspired by its glamour, energy, and iconic fashion, I used bold silhouettes
+    and expressive styling to capture the spirit of the disco era.
+  </p>
+
 </section>
 
+
+<!-- =========================
+     ROTATING IMAGE GALLERY
+========================= -->
+
+<div class="rotating-gallery">
+
+  <img src="disco1.jpg" alt="Studio 54 character illustration">
+
+  <img src="disco2.jpg" alt="Studio 54 character illustration">
+
+  <img src="disco3.jpg" alt="Studio 54 character illustration">
+
+</div>
+
+
+<!-- =========================
+     PROJECT INFO
+========================= -->
+
 <section class="info-row">
-  <div>
-    <div class="label">Medium</div>
-    <div class="value">Marker &amp; digital color</div>
+
+  <div class="info-item">
+    <div class="info-label">Medium</div>
+    <div class="info-value">Marker &amp; digital color</div>
   </div>
-  <div>
-    <div class="label">Role</div>
-    <div class="value">Illustrator</div>
+
+  <div class="info-item">
+    <div class="info-label">Role</div>
+    <div class="info-value">Illustrator</div>
   </div>
-  <div>
-    <div class="label">Timeline</div>
-    <div class="value">Spring 2026</div>
+
+  <div class="info-item">
+    <div class="info-label">Timeline</div>
+    <div class="info-value">Spring 2026</div>
   </div>
+
 </section>
+
+
+
+<!-- =========================
+     ARTWORKS
+========================= -->
 
 <section class="artworks">
 
-  <div class="artwork">
-    <div class="artwork-number">Artwork 01</div>
-    <div class="artwork-media">
-      <img src="disco2.jpg" alt="Illustrated ensemble of four dancing characters">
-    </div>
-    <div class="artwork-body">
-     
-     <div class="artwork-tags"></div>
-  
 
+  <!-- ARTWORK 01 -->
 
   <div class="artwork">
-    <div class="artwork-number">Artwork 02</div>
+
+    <div class="artwork-number">
+      Artwork 01
+    </div>
+
     <div class="artwork-media">
-      <img src="disco1.jpg" alt="Illustrated ensemble of four dancing characters">
+
+      <img
+        src="disco2.jpg"
+        alt="Illustrated ensemble of four dancing characters"
+      >
+
     </div>
-    <div class="artwork-body">
-      <div class="artwork-tags"></div>
-    </div>
+
   </div>
 
+
+
+  <!-- ARTWORK 02 -->
+
   <div class="artwork">
-    <div class="artwork-number">Artwork 03</div>
+
+    <div class="artwork-number">
+      Artwork 02
+    </div>
+
     <div class="artwork-media">
-      <img src="disco3.jpg" alt="Illustrated ensemble of four dancing characters">
+
+      <img
+        src="disco1.jpg"
+        alt="Illustrated ensemble of four dancing characters"
+      >
+
     </div>
+
+  </div>
+
+
+
+  <!-- ARTWORK 03 -->
+
+  <div class="artwork">
+
+    <div class="artwork-number">
+      Artwork 03
+    </div>
+
+    <div class="artwork-media">
+
+      <img
+        src="disco3.jpg"
+        alt="Illustrated ensemble of four dancing characters"
+      >
+
+    </div>
+
     <div class="artwork-body">
-      <h2>The ensemble</h2>
-      <p>Initially, I explored sketches to determine how to portray the energy and exclusivity of Studio 54. I experimented with poses, spacing, and interactions, ultimately creating three scenes that capture the nightclub experience: the entrance, dance floor, and lounge.</p>
-      </div>
-       <p>As I refined my images, I developed stronger compositions, clearer details, and more intentional poses inspired by disco fashion and props. I experimented with marker, Micron pens, Sharpie, and Procreate, exploring how line, color, light, and shadow could support the story. I also focused on facial expressions and color contrast to create mood and visual emphasis. Finally, I scanned my sketches and transformed the black linework into pink, allowing me to develop a limited pink and yellow color palette.</p>
-      
-      <div class="artwork-tags"></div>
+
+      <h2>
+        The ensemble
+      </h2>
+
+      <p>
+        Initially, I explored sketches to determine how to portray the energy
+        and exclusivity of Studio 54. I experimented with poses, spacing, and
+        interactions, ultimately creating three scenes that capture the
+        nightclub experience: the entrance, dance floor, and lounge.
+      </p>
+
+      <p>
+        As I refined my images, I developed stronger compositions, clearer
+        details, and more intentional poses inspired by disco fashion and
+        props. I experimented with marker, Micron pens, Sharpie, and Procreate,
+        exploring how line, color, light, and shadow could support the story.
+        I also focused on facial expressions and color contrast to create mood
+        and visual emphasis. Finally, I scanned my sketches and transformed
+        the black linework into pink, allowing me to develop a limited pink
+        and yellow color palette.
+      </p>
+
     </div>
+
   </div>
 
 </section>
+
+
+
+<!-- =========================
+     PROCESS
+========================= -->
 
 <section class="process-section">
-  <div class="process-head">
-    <div class="process-title">Documenting progress</div>
-    <div class="process-project">Character Identity System</div>
-    <div class="process-eyebrow">Process documentation</div>
+
+  <div class="process-heading">
+
+    <div class="section-label">
+      Process
+    </div>
+
+    <h2>
+      Developing the characters and visual language.
+    </h2>
+
+    <p>
+      I explored poses, compositions, color palettes, and linework before
+      developing the final illustrations. These studies helped establish
+      a consistent visual language across the series.
+    </p>
+
   </div>
 
-  <div class="process-images gallery-grid" id="pImages">
+
+  <div class="process-images">
 
     <div class="process-box">
+
       <span class="n">1</span>
-      <img src="disco7.jpg" alt="Character development process">
+
+      <img
+        src="disco7.jpg"
+        alt="Character development process"
+      >
+
     </div>
 
+
     <div class="process-box">
+
       <span class="n">2</span>
-      <img src="disco8.jpg" alt="Character development process">
+
+      <img
+        src="disco8.jpg"
+        alt="Character development process"
+      >
+
     </div>
 
+
     <div class="process-box">
+
       <span class="n">3</span>
-      <img src="disco6.jpg" alt="Character development process">
+
+      <img
+        src="disco6.jpg"
+        alt="Character development process"
+      >
+
     </div>
 
   </div>
+
 
   <div class="process-caption">
-  
 
     <ol>
-      <li><span class="n">1</span><span>Early thumbnail sketches for the ensemble pose</span></li>
-      <li><span class="n">2</span><span>Palette test sheet before locking the final colors</span></li>
-      <li><span class="n">3</span><span>Line work laid out flat before adding color</span></li>
+
+      <li>
+        <span class="n">1</span>
+        <span>Early thumbnail sketches for the ensemble pose</span>
+      </li>
+
+      <li>
+        <span class="n">2</span>
+        <span>Palette test sheet before locking the final colors</span>
+      </li>
+
+      <li>
+        <span class="n">3</span>
+        <span>Line work laid out flat before adding color</span>
+      </li>
+
     </ol>
+
   </div>
+
 </section>
 
 
 
-<!-- ---------- Research ---------- -->
+<!-- =========================
+     RESEARCH
+========================= -->
 
-<section class="gallery-section">
-  <div class="process-head">
-    <div class="process-title">Research</div>
-    <div class="process-project">Character Identity System</div>
-    <div class="process-eyebrow">Reference &amp; inspiration</div>
+<section class="research-section">
+
+  <div class="research-heading">
+
+    <div class="section-label">
+      Research
+    </div>
+
+    <h2>
+      Looking to Studio 54 for visual inspiration.
+    </h2>
+
+    <p>
+      I researched Studio 54, disco culture, nightlife photography, fashion,
+      and the visual language surrounding the club. I focused on movement,
+      theatricality, color, and the expressive characters that defined the
+      era.
+    </p>
+
   </div>
 
-  <div class="process-images grid-5" id="researchImages">
 
-  
-  <div class="process-img">
-      <img src="studio54_1.jpg" alt="Visual research">
-    </div>
-       <div class="process-img">
-      <img src="studio54_2.jpg" alt="Color and style references">
-    </div>
-  <div class="process-img">
-      <img src="studio54_3.jpg" alt="Visual research">
-    </div>
- <div class="process-img">
-      <img src="studio54_4.jpg" alt="Visual research">
-    </div>
+  <div class="grid-5" id="researchImages">
+
     <div class="process-img">
-      <img src="studio54_5.jpg" alt="Visual research">
-    </div>
-  <div class="process-img">
-      <img src="studio54_6.jpg" alt="Visual research">
+      <img src="studio54_1.jpg" alt="Studio 54 visual research">
     </div>
 
+    <div class="process-img">
+      <img src="studio54_2.jpg" alt="Studio 54 color and style references">
+    </div>
 
+    <div class="process-img">
+      <img src="studio54_3.jpg" alt="Studio 54 visual research">
+    </div>
+
+    <div class="process-img">
+      <img src="studio54_4.jpg" alt="Studio 54 visual research">
+    </div>
+
+    <div class="process-img">
+      <img src="studio54_5.jpg" alt="Studio 54 visual research">
+    </div>
+
+    <div class="process-img">
+      <img src="studio54_6.jpg" alt="Studio 54 visual research">
+    </div>
 
   </div>
+
 </section>
 
-<!-- ---------- Research image sources ---------- -->
-<section class="gallery-section" style="margin-top:32px;">
+
+
+<!-- =========================
+     SOURCES
+========================= -->
+
+<section class="section">
+
+  <div class="section-label">
+    References
+  </div>
+
+  <h2>
+    Visual references.
+  </h2>
+
   <div class="source-links">
-    <a class="source-link" href="https://www.billboard.com/photos/studio-54-pictures/1-30-photos-from-studio-54s-prime/" target="_blank" rel="noopener">
-      <div class="source-icon" style="background:#1c1210;">B</div>
+
+    <a
+      class="source-link"
+      href="https://www.billboard.com/photos/studio-54-pictures/1-30-photos-from-studio-54s-prime/"
+      target="_blank"
+      rel="noopener"
+    >
+
+      <div class="source-icon" style="background:#1c1210;">
+        B
+      </div>
+
       <div class="source-text">
+
         <div class="source-name">
           Billboard
-          <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <div class="source-sub">Studio 54 photo archive</div>
+
+        <div class="source-sub">
+          Studio 54 photo archive
+        </div>
+
       </div>
+
     </a>
 
-    <a class="source-link" href="https://www.gettyimages.com/photos/studio-54-1970s" target="_blank" rel="noopener">
-      <div class="source-icon" style="background:var(--red);">G</div>
+
+    <a
+      class="source-link"
+      href="https://www.gettyimages.com/photos/studio-54-1970s"
+      target="_blank"
+      rel="noopener"
+    >
+
+      <div class="source-icon" style="background:var(--red);">
+        G
+      </div>
+
       <div class="source-text">
+
         <div class="source-name">
           Getty Images
-          <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <div class="source-sub">Studio 54, 1970s</div>
+
+        <div class="source-sub">
+          Studio 54, 1970s
+        </div>
+
       </div>
+
     </a>
+
   </div>
+
 </section>
 
-<!-- ---------- Gallery ---------- -->
+
+
+<!-- =========================
+     ADDITIONAL WORK
+========================= -->
+
 <section class="gallery-section">
-  <div class="process-head">
-    <div class="process-title">Documenting progress</div>
-    <div class="process-project">Character Identity System</div>
-    <div class="process-eyebrow">Additional images</div>
+
+  <div class="process-heading">
+
+    <div class="section-label">
+      Exploration
+    </div>
+
+    <h2>
+      Documenting the development.
+    </h2>
+
+    <p>
+      Additional sketches and studies from the development of the character
+      system.
+    </p>
+
   </div>
+
 
   <div class="gallery-masonry" id="galleryImages">
+
     <div class="gallery-item">
-      <img src="sketch1.jpg" alt="Gallery image">
+      <img src="sketch1.jpg" alt="Character sketch">
     </div>
+
     <div class="gallery-item">
-      <img src="sketch2.jpg" alt="Gallery image">
+      <img src="sketch2.jpg" alt="Character sketch">
     </div>
+
     <div class="gallery-item">
-      <img src="sketch3.jpg" alt="Gallery image">
+      <img src="sketch3.jpg" alt="Character sketch">
     </div>
+
     <div class="gallery-item">
-      <img src="sketch4.jpg" alt="Gallery image">
-    </div>
-  </div>
-  
-</section>
-
-
-<!-- ---------- Development A ---------- -->
-<section class="gallery-section">
-
-  <div class="process-head">
-    <div class="process-title">Refinements</div>
-    <div class="process-project">Character Identity System</div>
-    <div class="process-eyebrow">Additional images</div>
-  </div>
-
-  <div class="process-images grid-3" id="devAImages">
-
-
-
-    <div class="process-img">
-      <img class="uploaded-photo" src="drawingdisco1.jpeg" alt="Character development sketch">
-    </div>
-
-    <div class="process-img">
-      <img class="uploaded-photo" src="drawingdisco2.jpeg" alt="Character development process">
-    </div>
-
-    <div class="process-img">
-      <img class="uploaded-photo" src="drawingdisco3.jpg" alt="Character development exploration">
+      <img src="sketch4.jpg" alt="Character sketch">
     </div>
 
   </div>
+
 </section>
 
 
 
+<!-- =========================
+     REFINEMENTS
+========================= -->
 
-<script>
-  /* ---------- Individual artwork upload slots ---------- */
-  document.querySelectorAll('.artwork-media').forEach(zone => {
-    zone.style.position = 'relative';
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/*';
-    zone.appendChild(input);
-    input.addEventListener('change', () => {
-      const file = input.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = ev => {
-        let img = zone.querySelector('img');
-        if (!img) { img = document.createElement('img'); zone.prepend(img); }
-        img.src = ev.target.result;
-      };
-      reader.readAsDataURL(file);
-    });
-  });
+<section class="development-section">
 
-  /* ---------- Shared placeholder palette ---------- */
-  const icons = {
-    pen:   '<path d="M3 21l4-1 12-12-3-3L4 17l-1 4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>',
-    photo: '<rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="9" r="1.6" fill="currentColor"/><path d="M4 16l5-5 4 4 3-3 4 4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>',
-    swatch:'<rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M7 9h4M7 13h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
-    ref:   '<circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="M20 20l-4.3-4.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
-    grid:  '<rect x="4" y="4" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="4" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="14" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="14" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.6"/>'
-  };
-  const palette = [
-    { bg:'linear-gradient(160deg,#f6cdc4,#e7a99c)', color:'#1c1210', icon: icons.pen },
-    { bg:'linear-gradient(160deg,#fbe2dd,#f6cdc4)', color:'#1c1210', icon: icons.photo },
-    { bg:'linear-gradient(160deg,#1c1210,#4a3532)', color:'#fff',    icon: icons.swatch },
-    { bg:'linear-gradient(160deg,#e7a99c,#c8351f)', color:'#fff',    icon: icons.ref },
-    { bg:'linear-gradient(160deg,#9c2416,#1c1210)', color:'#fff',    icon: icons.grid }
-  ];
+  <div class="development-heading">
 
-  function panelHTML(i, uploadedSrc, dataAttr){
-    const p = palette[i % palette.length];
-    if (uploadedSrc) {
-      return `<div class="process-img">
-        <span class="process-badge">${i+1}</span>
-        <img class="uploaded-photo" src="${uploadedSrc}" alt="Photo ${i+1}">
-        <input type="file" accept="image/*" ${dataAttr}>
-      </div>`;
-    }
-    return `<div class="process-img" style="background:${p.bg}; color:${p.color};">
-      <span class="process-badge">${i+1}</span>
-      <svg class="deco-icon" viewBox="0 0 24 24" fill="none">${p.icon}</svg>
-      <input type="file" accept="image/*" ${dataAttr}>
-    </div>`;
-  }
+    <div class="section-label">
+      Refinement
+    </div>
 
-  /* ---------- Generic simple gallery (uniform grid, N spaces) ---------- */
-  function initSimpleGallery(containerEl, count){
-    const store = {};
-    function render(){
-      containerEl.innerHTML = Array.from({ length: count }, (_, i) =>
-        panelHTML(i, store[i], `data-idx="${i}"`)
-      ).join('');
-    }
-    containerEl.addEventListener('change', e => {
-      const input = e.target;
-      if (input.tagName !== 'INPUT' || input.type !== 'file') return;
-      const file = input.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = ev => { store[input.dataset.idx] = ev.target.result; render(); };
-      reader.readAsDataURL(file);
-    });
-    render();
-  }
+    <h2>
+      Refining line, color, and composition.
+    </h2>
 
-  initSimpleGallery(document.getElementById('devBImages'), 3);
-</script>
+    <p>
+      I continued refining the illustrations through additional drawing,
+      scanning, color exploration, and compositional adjustments.
+    </p>
+
+  </div>
+
+
+  <div id="devAImages">
+
+    <div class="process-img">
+
+      <img
+        src="drawingdisco1.jpeg"
+        alt="Character development sketch"
+      >
+
+    </div>
+
+
+    <div class="process-img">
+
+      <img
+        src="drawingdisco2.jpeg"
+        alt="Character development process"
+      >
+
+    </div>
+
+
+    <div class="process-img">
+
+      <img
+        src="drawingdisco3.jpg"
+        alt="Character development exploration"
+      >
+
+    </div>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div>
+    © 2026 Avery Ominsky
+  </div>
+
+  <div class="footer-right">
+
+    <a href="mailto:averyominsky@gmail.com">
+      Email
+    </a>
+
+    <a
+      href="https://www.linkedin.com/in/avery-ominsky/"
+      target="_blank"
+    >
+      LinkedIn
+    </a>
+
+  </div>
+
+</footer>
+
 
 </body>
 </html>
