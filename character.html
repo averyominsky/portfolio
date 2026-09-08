@@ -207,6 +207,15 @@ a {
   margin-bottom: 48px;
 }
 
+.back-link {
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--ink);
+}
+
 .case-title {
   max-width: 800px;
 
@@ -247,6 +256,8 @@ a {
   overflow: hidden;
 
   border-radius: 20px;
+
+  cursor: pointer;
 }
 
 .rotating-gallery img {
@@ -275,6 +286,9 @@ a {
   animation-delay: 8s;
 }
 
+
+
+
 @keyframes rotateGallery {
 
   0% {
@@ -295,6 +309,171 @@ a {
 
   100% {
     opacity: 0;
+  }
+
+}
+
+
+/* =========================
+   LIGHTBOX
+========================= */
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+
+  background: rgba(28, 18, 16, 0.92);
+
+  animation: lightboxFade 0.2s ease;
+}
+
+.lightbox-overlay.active {
+  display: flex;
+}
+
+@keyframes lightboxFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightbox-figure {
+  position: relative;
+
+  max-width: 900px;
+  max-height: 85vh;
+
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-figure img {
+  width: auto;
+  height: auto;
+
+  max-width: 100%;
+  max-height: 85vh;
+
+  border-radius: 14px;
+
+  object-fit: contain;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -46px;
+  right: 0;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(255,255,255,0.12);
+  color: var(--white);
+
+  font-size: 20px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.lightbox-close:hover {
+  background: rgba(255,255,255,0.24);
+}
+
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(255,255,255,0.12);
+  color: var(--white);
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+
+  z-index: 2;
+}
+
+.lightbox-arrow:hover {
+  background: rgba(255,255,255,0.24);
+}
+
+.lightbox-prev {
+  left: -70px;
+}
+
+.lightbox-next {
+  right: -70px;
+}
+
+.lightbox-counter {
+  position: absolute;
+  bottom: -38px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color: rgba(255,255,255,0.7);
+
+  font-size: 13px;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 760px) {
+
+  .lightbox-overlay {
+    padding: 20px;
+  }
+
+  .lightbox-close {
+    top: -40px;
+  }
+
+  .lightbox-prev {
+    left: 4px;
+  }
+
+  .lightbox-next {
+    right: 4px;
+  }
+
+  .lightbox-arrow {
+    width: 40px;
+    height: 40px;
+
+    background: rgba(28,18,16,0.55);
   }
 
 }
@@ -394,11 +573,17 @@ a {
   margin: 0 auto;
 
   padding: 115px 28px 0;
+}
 
+.artworks-row {
   display: flex;
-  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+}
 
-  gap: 110px;
+.artworks-row .artwork {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .artwork {
@@ -440,6 +625,7 @@ a {
 
 .artwork-body {
   max-width: 760px;
+  margin: 0 0 60px;
 }
 
 .artwork-body h2 {
@@ -742,7 +928,7 @@ a {
 ========================= */
 
 .development-section {
-  max-width: 760px;
+  max-width: 1100px;
 
   margin: 0 auto;
 
@@ -773,10 +959,17 @@ a {
 
 #devAImages {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 24px;
 
-  max-width: 600px;
+  max-width: 1100px;
+}
+
+#devAImages .process-img {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 16px;
 }
 
 
@@ -863,8 +1056,13 @@ footer {
     padding-right: 20px;
   }
 
-  .artworks {
-    gap: 75px;
+  .artworks-row {
+    flex-direction: column;
+    gap: 45px;
+  }
+
+  #devAImages {
+    flex-direction: column;
   }
 
   .artwork-media {
@@ -949,13 +1147,36 @@ footer {
      ROTATING IMAGE GALLERY
 ========================= -->
 
-<div class="rotating-gallery">
+<div class="rotating-gallery" id="rotatingGallery">
 
-  <img src="disco1.jpg" alt="Studio 54 character illustration">
+  <img src="disco1.jpg" alt="Studio 54 character illustration" data-index="0">
 
-  <img src="disco2.jpg" alt="Studio 54 character illustration">
+  <img src="disco2.jpg" alt="Studio 54 character illustration" data-index="1">
 
-  <img src="disco3.jpg" alt="Studio 54 character illustration">
+  <img src="disco3.jpg" alt="Studio 54 character illustration" data-index="2">
+
+</div>
+
+
+<!-- =========================
+     LIGHTBOX
+========================= -->
+
+<div class="lightbox-overlay" id="lightboxOverlay">
+
+  <div class="lightbox-figure">
+
+    <button class="lightbox-arrow lightbox-prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+
+    <img src="disco1.jpg" alt="Studio 54 character illustration, enlarged" id="lightboxImg">
+
+    <button class="lightbox-arrow lightbox-next" id="lightboxNext" aria-label="Next image">›</button>
+
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
+
+    <div class="lightbox-counter" id="lightboxCounter">1 / 3</div>
+
+  </div>
 
 </div>
 
@@ -991,89 +1212,93 @@ footer {
 
 <section class="artworks">
 
+  <div class="artwork-body">
 
-  <!-- ARTWORK 01 -->
+    <h2>
+      The ensemble
+    </h2>
 
-  <div class="artwork">
+    <p>
+      Initially, I explored sketches to determine how to portray the energy
+      and exclusivity of Studio 54. I experimented with poses, spacing, and
+      interactions, ultimately creating three scenes that capture the
+      nightclub experience: the entrance, dance floor, and lounge.
+    </p>
 
-    <div class="artwork-number">
-      Artwork 01
-    </div>
-
-    <div class="artwork-media">
-
-      <img
-        src="disco2.jpg"
-        alt="Illustrated ensemble of four dancing characters"
-      >
-
-    </div>
-
-  </div>
-
-
-
-  <!-- ARTWORK 02 -->
-
-  <div class="artwork">
-
-    <div class="artwork-number">
-      Artwork 02
-    </div>
-
-    <div class="artwork-media">
-
-      <img
-        src="disco1.jpg"
-        alt="Illustrated ensemble of four dancing characters"
-      >
-
-    </div>
+    <p>
+      As I refined my images, I developed stronger compositions, clearer
+      details, and more intentional poses inspired by disco fashion and
+      props. I experimented with marker, Micron pens, Sharpie, and Procreate,
+      exploring how line, color, light, and shadow could support the story.
+      I also focused on facial expressions and color contrast to create mood
+      and visual emphasis. Finally, I scanned my sketches and transformed
+      the black linework into pink, allowing me to develop a limited pink
+      and yellow color palette.
+    </p>
 
   </div>
 
 
+  <div class="artworks-row">
 
-  <!-- ARTWORK 03 -->
+    <!-- ARTWORK 01 -->
 
-  <div class="artwork">
+    <div class="artwork">
 
-    <div class="artwork-number">
-      Artwork 03
+      <div class="artwork-number">
+        Artwork 01
+      </div>
+
+      <div class="artwork-media">
+
+        <img
+          src="disco2.jpg"
+          alt="Illustrated ensemble of four dancing characters"
+        >
+
+      </div>
+
     </div>
 
-    <div class="artwork-media">
 
-      <img
-        src="disco3.jpg"
-        alt="Illustrated ensemble of four dancing characters"
-      >
+
+    <!-- ARTWORK 02 -->
+
+    <div class="artwork">
+
+      <div class="artwork-number">
+        Artwork 02
+      </div>
+
+      <div class="artwork-media">
+
+        <img
+          src="disco1.jpg"
+          alt="Illustrated ensemble of four dancing characters"
+        >
+
+      </div>
 
     </div>
 
-    <div class="artwork-body">
 
-      <h2>
-        The ensemble
-      </h2>
 
-      <p>
-        Initially, I explored sketches to determine how to portray the energy
-        and exclusivity of Studio 54. I experimented with poses, spacing, and
-        interactions, ultimately creating three scenes that capture the
-        nightclub experience: the entrance, dance floor, and lounge.
-      </p>
+    <!-- ARTWORK 03 -->
 
-      <p>
-        As I refined my images, I developed stronger compositions, clearer
-        details, and more intentional poses inspired by disco fashion and
-        props. I experimented with marker, Micron pens, Sharpie, and Procreate,
-        exploring how line, color, light, and shadow could support the story.
-        I also focused on facial expressions and color contrast to create mood
-        and visual emphasis. Finally, I scanned my sketches and transformed
-        the black linework into pink, allowing me to develop a limited pink
-        and yellow color palette.
-      </p>
+    <div class="artwork">
+
+      <div class="artwork-number">
+        Artwork 03
+      </div>
+
+      <div class="artwork-media">
+
+        <img
+          src="disco3.jpg"
+          alt="Illustrated ensemble of four dancing characters"
+        >
+
+      </div>
 
     </div>
 
@@ -1444,6 +1669,81 @@ footer {
   </div>
 
 </footer>
+
+
+<!-- =========================
+     LIGHTBOX SCRIPT
+========================= -->
+
+<script>
+
+  (function () {
+
+    var galleryImages = Array.prototype.map.call(
+      document.querySelectorAll('#rotatingGallery img'),
+      function (img) { return img.getAttribute('src'); }
+    );
+
+    var overlay = document.getElementById('lightboxOverlay');
+    var lightboxImg = document.getElementById('lightboxImg');
+    var counter = document.getElementById('lightboxCounter');
+    var closeBtn = document.getElementById('lightboxClose');
+    var prevBtn = document.getElementById('lightboxPrev');
+    var nextBtn = document.getElementById('lightboxNext');
+    var gallery = document.getElementById('rotatingGallery');
+
+    var currentIndex = 0;
+
+    function showImage(index) {
+      currentIndex = (index + galleryImages.length) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentIndex];
+      counter.textContent = (currentIndex + 1) + ' / ' + galleryImages.length;
+    }
+
+    function openLightbox(index) {
+      showImage(index);
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    gallery.addEventListener('click', function () {
+      openLightbox(currentIndex);
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+
+    prevBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      showImage(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      showImage(currentIndex + 1);
+    });
+
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (!overlay.classList.contains('active')) return;
+
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+      if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+    });
+
+  })();
+
+</script>
 
 
 </body>
