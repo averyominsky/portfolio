@@ -346,7 +346,6 @@
     }
 
     .card:hover .card-inner {
-      border-color: var(--red);
       box-shadow: 0 20px 44px rgba(28,18,16,0.14);
     }
 
@@ -671,8 +670,56 @@
 
 
 
+.etching-fade {
+  position: relative;
+  aspect-ratio: 4 / 5; /* adjust to match your image proportions */
+}
+
+.etching-fade .fade-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: etchingSwap 8s infinite;
+  pointer-events: none;
+}
+
+.etching-fade .fade-img.fade-1 { animation-delay: 0s; }
+.etching-fade .fade-img.fade-2 { animation-delay: -4s; }
+
+@keyframes etchingSwap {
+  0%, 49.9% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
 
  
+
+
+.shoe-fade {
+  position: relative;
+  aspect-ratio: 4 / 5; /* adjust to match your shoe photos' proportions */
+}
+
+.shoe-fade .fade-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: etchingSwap 8s infinite;
+  pointer-events: none;
+}
+
+.shoe-fade .fade-img.shoe-1 { animation-delay: 0s; }
+.shoe-fade .fade-img.shoe-2 { animation-delay: -4s; }
+
+
+
+
 
 
   </style>
@@ -774,28 +821,21 @@
 
         <!-- ── FIXED ARTWORK CARDS ── -->
 
-        <div class="card" style="--float-dur:5.2s;--float-delay:0s;--float-y:-12px;--rot-a:-0.4deg;--rot-b:0.35deg;">
-          <div class="card-inner">
-            <img src="seaartwork.jpeg" alt="Sea Artwork">
-          </div>
 
-          <div class="card-caption">
-            <p class="card-title">Etchings of the Sea</p>
-            <p class="card-sub">Monotype and etching print, 1</p>
-          </div>
-        </div>
+   <div class="card etching-card" style="--float-dur:5.2s;--float-delay:0s;--float-y:-12px;--rot-a:-0.4deg;--rot-b:0.35deg;">
+  <div class="card-inner etching-fade">
+    <img src="seaartwork.jpeg" alt="Sea Artwork" class="fade-img fade-1">
+    <img src="seaartwork2.jpeg" alt="Sea Artwork 2" class="fade-img fade-2">
+  </div>
+
+  <div class="card-caption">
+    <p class="card-title">Etchings of the Sea</p>
+    <p class="card-sub">Monotype and etching prints</p>
+  </div>
+</div>
 
 
-        <div class="card" style="--float-dur:4.6s;--float-delay:0.6s;--float-y:-10px;--rot-a:0.3deg;--rot-b:-0.4deg;">
-          <div class="card-inner">
-            <img src="seaartwork2.jpeg" alt="Sea Artwork 2">
-          </div>
 
-          <div class="card-caption">
-            <p class="card-title">Etchings of the Sea</p>
-            <p class="card-sub">Monotype and etching print, 2</p>
-          </div>
-        </div>
 
 
         <div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
@@ -822,29 +862,17 @@
         </div>
 
 
-        <div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
-          <div class="card-inner">
-            <img src="shoe2.jpeg" alt="Shoe">
-          </div>
+       <div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
+  <div class="card-inner shoe-fade">
+    <img src="shoe2.jpeg" alt="Shoe" class="fade-img shoe-1">
+    <img src="shoe1.jpeg" alt="Shoe 2" class="fade-img shoe-2">
+  </div>
 
-          <div class="card-caption">
-            <p class="card-title">If the Shoe Fits</p>
-            <p class="card-sub">Life-size cardboard construction</p>
-          </div>
-        </div>
-
-
-        <div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
-          <div class="card-inner">
-            <img src="shoe1.jpeg" alt="Shoe 2">
-          </div>
-
-          <div class="card-caption">
-            <p class="card-title">If the Shoe Fits</p>
-            <p class="card-sub">Life-size cardboard construction</p>
-          </div>
-        </div>
-
+  <div class="card-caption">
+    <p class="card-title">If the Shoe Fits</p>
+    <p class="card-sub">Life-size cardboard construction</p>
+  </div>
+</div>
 
         <div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
           <div class="card-inner">
