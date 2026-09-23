@@ -720,6 +720,47 @@
 
 
 
+.breakthrough-fade {
+  position: relative;
+  aspect-ratio: 4 / 5; /* adjust to match your print photos' proportions */
+}
+
+.breakthrough-fade .fade-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: etchingSwap 8s infinite;
+  pointer-events: none;
+}
+
+.breakthrough-fade .fade-img.bt-1 { animation-delay: 0s; }
+.breakthrough-fade .fade-img.bt-2 { animation-delay: -4s; }
+
+
+
+.cheesehouse-fade {
+  position: relative;
+  aspect-ratio: 4 / 5; /* adjust to match your comic pages' proportions */
+}
+
+.cheesehouse-fade .fade-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: etchingSwap 8s infinite;
+  pointer-events: none;
+}
+
+.cheesehouse-fade .fade-img.ch-1 { animation-delay: 0s; }
+.cheesehouse-fade .fade-img.ch-2 { animation-delay: -4s; }
+
+
 
 
   </style>
@@ -862,7 +903,7 @@
         </div>
 
 
-       <div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
+      <div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
   <div class="card-inner shoe-fade">
     <img src="shoe2.jpeg" alt="Shoe" class="fade-img shoe-1">
     <img src="shoe1.jpeg" alt="Shoe 2" class="fade-img shoe-2">
@@ -874,28 +915,40 @@
   </div>
 </div>
 
-        <div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
+
+
+<div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
+  <div class="card-inner breakthrough-fade">
+    <img src="Break Through 1.jpeg" alt="Break Through 1" class="fade-img bt-1">
+    <img src="Break Through 2.jpeg" alt="Break Through 2" class="fade-img bt-2">
+  </div>
+
+  <div class="card-caption">
+    <p class="card-title">Break Through</p>
+    <p class="card-sub">Monotype print</p>
+  </div>
+</div>
+
+
+
+ 
+       
+
+
+
+ <div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
           <div class="card-inner">
-            <img src="Break Through 1.jpeg" alt="Break Through 1">
+            <img src="beachouse.jpg" alt="Beachouse">
           </div>
 
           <div class="card-caption">
-            <p class="card-title">Break Through</p>
-            <p class="card-sub">Monotype print, 1</p>
+            <p class="card-title">Welcome to Our Beach House</p>
+            <p class="card-sub">Watercolor and micro pen</p>
           </div>
         </div>
 
 
-        <div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
-          <div class="card-inner">
-            <img src="Break Through 2.jpeg" alt="Break Through 2">
-          </div>
 
-          <div class="card-caption">
-            <p class="card-title">Break Through</p>
-            <p class="card-sub">Monotype print, 2</p>
-          </div>
-        </div>
 
 
         <div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
@@ -922,16 +975,7 @@
         </div>
 
 
-        <div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
-          <div class="card-inner">
-            <img src="beachouse.jpg" alt="Beachouse">
-          </div>
-
-          <div class="card-caption">
-            <p class="card-title">Welcome to Our Beach House</p>
-            <p class="card-sub">Watercolor and micro pen</p>
-          </div>
-        </div>
+       
 
 
         <div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
@@ -957,29 +1001,19 @@
           </div>
         </div>
 
+<div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
+  <div class="card-inner cheesehouse-fade">
+    <img src="comic2.png" alt="Comic 2" class="fade-img ch-1">
+    <img src="comic3.png" alt="Comic 3" class="fade-img ch-2">
+  </div>
 
-        <div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
-          <div class="card-inner">
-            <img src="comic2.png" alt="Comic 2">
-          </div>
-
-          <div class="card-caption">
-            <p class="card-title">Cheese House</p>
-            <p class="card-sub">Procreate, page 1</p>
-          </div>
-        </div>
+  <div class="card-caption">
+    <p class="card-title">Cheese House</p>
+    <p class="card-sub">Procreate</p>
+  </div>
+</div>
 
 
-        <div class="card" style="--float-dur:6.1s;--float-delay:0.2s;--float-y:-14px;--rot-a:-0.35deg;--rot-b:0.3deg;">
-          <div class="card-inner">
-            <img src="comic3.png" alt="Comic 3">
-          </div>
-
-          <div class="card-caption">
-            <p class="card-title">Cheese House</p>
-            <p class="card-sub">Procreate, page 2</p>
-          </div>
-        </div>
 
       </div>
 
