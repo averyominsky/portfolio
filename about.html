@@ -22,6 +22,7 @@
 
 
 <style>
+
   :root{
     --bg:#fffdfc;
     --ink:#1c1210;
@@ -47,6 +48,7 @@
   a{color:inherit;text-decoration:none;}
   img{max-width:100%;display:block;}
   button{font-family:inherit;}
+
 
   /* ---------- Topbar ---------- */
   .topbar{
@@ -202,6 +204,12 @@
   }
   .about-links a:hover{color:var(--red); border-color:var(--red);}
   .about-links a svg{width:14px; height:14px; flex-shrink:0;}
+
+
+  .about-strip img.headshot{
+  object-position: 50% 40%; /* x y: lower y = photo moves down in the frame */
+}
+
 
   /* ---------- Scrolling image strip ---------- */
   .about-strip-wrap{
@@ -366,8 +374,7 @@
 
   <div class="about-strip-wrap">
     <div class="about-strip" id="aboutStrip">
-      <figure><img src="about1.jpg" alt="Portrait of Avery"></figure>
-      <figure><img src="about3.jpg" alt="Desk setup, work in progress"></figure>
+<figure><img class="headshot" src="headshot.jpg.png" alt="Portrait of Avery"></figure>      <figure><img src="about3.jpg" alt="Desk setup, work in progress"></figure>
             <figure><img src="about2.jpg" alt="Cherry blossoms, black and white"></figure>
       <figure><img src="about4.jpg" alt="Studio detail"></figure>
     </div>
