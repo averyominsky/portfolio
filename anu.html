@@ -325,6 +325,13 @@
 
     .info-value { font-size: 14px; }
 
+    .info-link {
+      border-bottom: 1px solid var(--red);
+      transition: background .2s ease;
+    }
+
+    .info-link:hover { background: rgba(200,53,31,0.12); }
+
 
     /* GENERAL SECTIONS */
 
@@ -605,7 +612,7 @@
 
       <div class="info-item">
         <div class="info-label">Organization</div>
-        <div class="info-value">ANU Museum, Tel Aviv</div>
+        <div class="info-value"><a class="info-link" href="https://anumuseum.org.il/" target="_blank" rel="noopener">ANU Museum, Tel Aviv</a></div>
       </div>
 
       <div class="info-item">
