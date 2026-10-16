@@ -761,6 +761,35 @@
 .cheesehouse-fade .fade-img.ch-2 { animation-delay: -4s; }
 
 
+/* Graceful crossfade: first image stays put, second fades over it */
+.etching-fade .fade-1,
+.shoe-fade .shoe-1,
+.breakthrough-fade .bt-1,
+.cheesehouse-fade .ch-1 {
+  opacity: 1;
+  animation: none;
+}
+
+.etching-fade .fade-2,
+.shoe-fade .shoe-2,
+.breakthrough-fade .bt-2,
+.cheesehouse-fade .ch-2 {
+  will-change: opacity;
+  animation: topFade 10s ease-in-out infinite;
+}
+
+/* stagger so the cards don't all change at once */
+.etching-fade .fade-2      { animation-delay: 0s; }
+.shoe-fade .shoe-2         { animation-delay: -2.5s; }
+.breakthrough-fade .bt-2   { animation-delay: -5s; }
+.cheesehouse-fade .ch-2    { animation-delay: -7.5s; }
+
+@keyframes topFade {
+  0%, 38%  { opacity: 0; }
+  50%, 88% { opacity: 1; }
+  100%     { opacity: 0; }
+}
+
 
 
   </style>
