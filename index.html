@@ -678,12 +678,13 @@ background: #dcecfa;
 
   .phone-frame {
     height: 88%;
-    border-radius: 32px;
+    border-radius: 22px;
     padding: 4px;
   }
 
-  .phone-screen {
-    border-radius: 27px;
+  .phone-screen,
+  .phone-screen::after {
+    border-radius: 17px;
   }
 
   .phone-frame::before {
@@ -691,7 +692,7 @@ background: #dcecfa;
     height: 15px;
   }
 
-}.   
+}
 
 
 
@@ -813,7 +814,7 @@ background: #dcecfa;
   </div>
 
   <div class="work-meta">ILLUSTRATION · Spring 2026</div>
-  <div class="work-title">Studio 54: Culture & Character</div>
+  <div class="work-title">Studio 54: Culture &amp; Character</div>
 </a>
 
 
@@ -1062,9 +1063,11 @@ updateLastModified();
     return window.innerHeight + window.scrollY >= document.body.offsetHeight - 40;
   }
 
-  window.addEventListener('scroll', ()=>{
-    scrollHint.classList.toggle('hide', nearBottom() || window.scrollY > 250);
-  }, { passive:true });
+  if (scrollHint) {
+    window.addEventListener('scroll', ()=>{
+      scrollHint.classList.toggle('hide', nearBottom() || window.scrollY > 250);
+    }, { passive:true });
+  }
 
 
 
