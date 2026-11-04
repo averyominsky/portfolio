@@ -375,6 +375,20 @@
     }
 
 
+    /* CONTEXT (text + image) */
+
+    .context-section { max-width: 1100px; }
+
+    .context-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .context-image img { border-radius: 18px; }
+
+
     /* COMPETITOR COMPARISON */
 
     .comparison-wrapper {
@@ -401,6 +415,8 @@
 
     .comparison-header div:not(:first-child) { text-align: center; }
 
+
+
     .comparison-row {
       min-height: 58px;
       border-top: 1px solid var(--line);
@@ -422,6 +438,15 @@
 
 
     /* EXPERIENCE FLOW */
+
+    .flow-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .flow-proto img { border-radius: 18px; }
 
     .flow-image img { border-radius: 18px; }
 
@@ -516,6 +541,8 @@
         padding: 85px 20px 0;
       }
 
+      .flow-row { grid-template-columns: 1fr; }
+      .context-grid { grid-template-columns: 1fr; gap: 32px; }
       .museum-grid { grid-template-columns: 1fr; }
       .museum-grid .large { grid-column: span 1; }
 
@@ -625,31 +652,32 @@
 
     <!-- CONTEXT -->
 
-    <section class="section">
+    <section class="section context-section">
 
-      <div class="section-label">Context</div>
+      <div class="context-grid">
 
-      <h2>Rethinking the Museum Visit</h2>
+        <div class="context-text">
 
-      <p>
-        Families visiting the ANU Museum on their own may move passively
-        through the exhibits, feel overwhelmed by information, or struggle
-        to connect historical objects to their own lives, especially without
-        a guided tour to provide context. I saw an opportunity to rethink the
-        independent family visit by creating a self-guided interactive
-        “quest” experience that makes the museum more engaging, personal,
-        and meaningful while encouraging families to explore, discuss, and
-        connect with the objects they encounter.
-      </p>
+          <div class="section-label">Context</div>
+
+          <h2>Rethinking the Museum Visit</h2>
+
+          <p>
+            Families who visit the ANU Museum on their own can feel overwhelmed or struggle to connect the objects to their own lives, especially without a guide. I designed a self-guided “quest” that turns the visit into something families explore, discuss, and connect with together.
+          </p>
+
+        </div>
+
+        <div class="context-image">
+          <img src="anu2.jpeg" alt="ANU museum space">
+        </div>
+
+      </div>
 
     </section>
 
 
-    <!-- HERO IMAGE -->
 
-    <section class="hero-image">
-      <img src="anu2.jpeg" alt="ANU Museum Digital Companion">
-    </section>
 
 
     <!-- COMPETITOR ANALYSIS -->
@@ -726,13 +754,21 @@
 
     <section class="section-wide">
 
-      <div class="section-label">Experience Flow</div>
+      <div class="section-label">Figma Prototyping and Experience Flow</div>
 
-      <div class="flow-image">
-        <img
-          src="flow.jpeg"
-          alt="Flow chart mapping the ANU Museum Digital Companion experience"
-        >
+      <div class="flow-row">
+
+        <div class="flow-image">
+          <img
+            src="flow.jpeg"
+            alt="Flow chart mapping the ANU Museum Digital Companion experience"
+          >
+        </div>
+
+        <div class="flow-proto">
+          <img src="figma1.jpg" alt="Figma prototype for the ANU Museum Digital Companion">
+        </div>
+
       </div>
 
     </section>
@@ -745,10 +781,6 @@
       <div class="section-label">In the Museum</div>
 
       <div class="museum-grid">
-
-        <div class="large">
-          <img src="scene3.jpeg" alt="ANU museum space">
-        </div>
 
         <div>
           <img src="scene1.jpeg" alt="ANU museum space">
