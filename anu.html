@@ -147,6 +147,8 @@
       margin-top: 56px;
     }
 
+    .phone-stage { position: relative; }
+
     .phone-trigger {
       display: block;
       padding: 0;
@@ -244,6 +246,37 @@
       text-transform: uppercase;
       opacity: 0.4;
     }
+
+    /* Quiet link to the live site (beside the bottom of the phone) */
+    .site-link {
+      position: absolute;
+      left: calc(100% + 28px);
+      bottom: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      padding-bottom: 2px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid var(--line);
+      transition: color .2s ease, border-color .2s ease;
+    }
+
+    .site-link svg {
+      width: 11px;
+      height: 11px;
+      transition: transform .2s ease;
+    }
+
+    .site-link:hover,
+    .site-link:focus-visible {
+      color: var(--ink);
+      border-color: var(--red);
+    }
+
+    .site-link:hover svg { transform: translate(1px, -1px); }
 
 
     /* FULLSCREEN VIDEO VIEWER */
@@ -451,38 +484,42 @@
     .flow-image img { border-radius: 18px; }
 
 
-    /* MUSEUM SPACE GRID */
+    /* IN THE MUSEUM + FINAL STATEMENT */
 
-    .museum-grid {
+    .museum-section { padding-bottom: 150px; }
+
+    .museum-split {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+      margin-top: 30px;
+    }
+
+    .museum-stack {
+      display: flex;
+      flex-direction: column;
       gap: 18px;
-      margin-top: 45px;
     }
 
-    .museum-grid img { border-radius: 18px; }
+    .museum-stack img { border-radius: 18px; }
 
-    .museum-grid .large { grid-column: span 2; }
-
-
-    /* FINAL STATEMENT */
-
-    .final-statement {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 130px 28px 150px;
-      text-align: center;
+    .museum-statement {
+      position: sticky;
+      top: 140px;
     }
 
-    .final-statement p {
+    .museum-statement p {
+      max-width: none;
       margin: 0;
+      color: var(--ink);
       font-family: var(--serif);
-      font-size: clamp(32px, 5vw, 58px);
-      line-height: 1.08;
+      font-size: clamp(28px, 3.6vw, 46px);
+      line-height: 1.12;
       letter-spacing: -0.04em;
     }
 
-    .final-statement span { color: var(--red); }
+    .museum-statement span { color: var(--red); }
 
 
     /* FOOTER */
@@ -522,6 +559,10 @@
       .phone-screen::after { border-radius: 27px; }
       .phone-frame::before { top: 9px; height: 15px; }
 
+      /* no room beside the phone on small screens: tuck the link underneath */
+      .phone-stage { display: flex; flex-direction: column; align-items: center; }
+      .site-link { position: static; margin-top: 20px; }
+
       .viewer video { max-width: 100vw; max-height: 100vh; border-radius: 0; }
 
       .hero-image { padding: 0 20px; }
@@ -543,8 +584,9 @@
 
       .flow-row { grid-template-columns: 1fr; }
       .context-grid { grid-template-columns: 1fr; gap: 32px; }
-      .museum-grid { grid-template-columns: 1fr; }
-      .museum-grid .large { grid-column: span 1; }
+      .museum-section { padding-bottom: 110px; }
+      .museum-split { grid-template-columns: 1fr; gap: 36px; }
+      .museum-statement { position: static; }
 
       .comparison-header,
       .comparison-row {
@@ -608,15 +650,22 @@
       <!-- PHONE VIDEO -->
 
       <div class="phone-demo">
-        <button class="phone-trigger" id="phoneTrigger" type="button" aria-label="Play the app video full screen">
-          <div class="phone-frame">
-            <div class="phone-screen">
-              <video autoplay muted loop playsinline preload="auto">
-                <source src="anumobileapp.mp4" type="video/mp4">
-              </video>
+        <div class="phone-stage">
+          <button class="phone-trigger" id="phoneTrigger" type="button" aria-label="Play the app video full screen">
+            <div class="phone-frame">
+              <div class="phone-screen">
+                <video autoplay muted loop playsinline preload="auto">
+                  <source src="anumobileapp.mp4" type="video/mp4">
+                </video>
+              </div>
             </div>
-          </div>
-        </button>
+          </button>
+
+          <a class="site-link" href="https://averyominsky.github.io/anuwebsite-game/" target="_blank" rel="noopener">
+            Explore the site
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
         <div class="phone-hint">Tap to view full screen</div>
       </div>
 
@@ -774,37 +823,28 @@
     </section>
 
 
-    <!-- MUSEUM SPACE -->
+    <!-- IN THE MUSEUM + FINAL STATEMENT -->
 
-    <section class="section-wide">
+    <section class="section-wide museum-section">
 
       <div class="section-label">In the Museum</div>
 
-      <div class="museum-grid">
+      <div class="museum-split">
 
-        <div>
+        <div class="museum-stack">
           <img src="scene1.jpeg" alt="ANU museum space">
-        </div>
-
-        <div>
+          <img src="anu1.jpeg" alt="ANU Museum Digital Companion in use">
           <img src="scene2.jpeg" alt="ANU museum space">
         </div>
 
+        <div class="museum-statement">
+          <p>
+            The goal isn't just to help families learn about Jewish history.
+            <span>It's to help them discover where they fit within it.</span>
+          </p>
+        </div>
+
       </div>
-
-    </section>
-
-
-    <!-- FINAL STATEMENT -->
-
-    <section class="final-statement">
-
-      <p>
-        The goal isn't just to help families
-        <span>learn about Jewish history.</span>
-        It's to help them discover where
-        <span>they fit within it.</span>
-      </p>
 
     </section>
 
