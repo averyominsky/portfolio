@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Avery Ominsky - Hilma af Klint Bioposters</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="circle.jpg">
+
+  <style>
+
+    :root {
+      --bg: #fffdfc;
+      --ink: #1c1210;
+      --muted: #8a7a76;
+      --line: #efe3e0;
+      --red: #c8351f;
+      --soft: #f5efed;
+
+      --serif: "Fraunces", serif;
+      --sans: "DM Sans", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    /* TOP BAR */
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+      background: rgba(255, 253, 252, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 22px;
+      letter-spacing: 0.2px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .nav a {
+      position: relative;
+      padding: 4px 0;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover { color: var(--ink); }
+
+    .nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0%;
+      height: 2px;
+      background: var(--red);
+      transition: width 0.25s ease;
+    }
+
+    .nav a:hover::after { width: 100%; }
+
+
+    /* CASE HEADER */
+
+    .case-header {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 105px 28px 60px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 48px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .back:hover { color: var(--ink); }
+
+    .case-title {
+      max-width: 800px;
+      margin: 0 0 28px;
+      font-family: var(--serif);
+      font-size: clamp(48px, 7vw, 78px);
+      font-weight: 400;
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    .case-intro {
+      max-width: 700px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.55;
+    }
+
+
+    /* PHOTO AREAS
+       Each .ph is a framed slot. The image fills it; if the file isn't
+       there yet, the dashed label shows instead.
+       Change --ar on any slot to match your real image proportions. */
+
+    .ph {
+      --ar: 4 / 5;
+      position: relative;
+      margin: 0;
+      aspect-ratio: var(--ar);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px dashed #d9c9c5;
+      background: var(--soft);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .ph::before { content: attr(data-label); }
+
+    .ph img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ph img[hidden] { display: none; }
+
+    .ph:has(img:not([hidden])) { border-style: solid; border-color: var(--line); }
+
+    .poster { --ar: 3 / 4; }
+    .wide   { --ar: 16 / 9; }
+    .square { --ar: 1 / 1; }
+
+    .cap {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+
+    /* HERO DIPTYCH */
+
+    .hero-diptych {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+
+    /* INFO ROW */
+
+    .info-row {
+      max-width: 900px;
+      margin: 45px auto 0;
+      padding: 25px 28px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .info-item { padding-right: 20px; }
+
+    .info-label {
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .info-value { font-size: 14px; }
+
+
+    /* FIGURES (shown at natural proportions, capped in width) */
+
+    .fig {
+      margin: 38px auto 0;
+      max-width: var(--mw, 860px);
+    }
+
+    .fig img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
+    }
+
+    .fig .cap { text-align: left; }
+
+
+    /* INSPIRATION BANNER */
+
+    .banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-top: 18px;
+      border-radius: 18px;
+    }
+
+
+    /* GENERAL SECTIONS */
+
+    .section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 115px 28px 0;
+    }
+
+    .section-wide {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 115px 28px 0;
+    }
+
+    .section-label {
+      margin-bottom: 14px;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 22px;
+      font-family: var(--serif);
+      font-size: clamp(35px, 5vw, 53px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+    }
+
+    .section p,
+    .section-wide p {
+      max-width: 620px;
+      margin: 0 0 20px;
+      color: #514643;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .photo-grid { margin-top: 38px; display: grid; gap: 18px; }
+    .photo-grid.three { grid-template-columns: repeat(3, 1fr); }
+    .photo-grid.two   { grid-template-columns: repeat(2, 1fr); }
+    .photo-grid .span-2 { grid-column: span 2; }
+
+
+    /* CLOSING STATEMENT */
+
+    .closing {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 130px 28px 150px;
+      text-align: center;
+    }
+
+    .closing p {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(30px, 5vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .closing span { color: var(--red); }
+
+
+    /* FOOTER */
+
+    footer {
+      padding: 30px 28px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-right { display: flex; gap: 20px; }
+    .footer-right a:hover { color: var(--ink); }
+
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      .topbar { padding: 18px 20px; }
+      .nav { gap: 16px; }
+
+      .case-header { padding: 75px 20px 45px; }
+      .case-title { font-size: 52px; }
+      .case-intro { font-size: 17px; }
+
+      .hero-diptych { padding: 0 20px; gap: 12px; }
+      .ph,
+      .banner img,
+      .fig img { border-radius: 14px; }
+
+      .info-row {
+        margin: 35px 20px 0;
+        padding: 22px 0;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .info-item { padding: 0; }
+
+      .section,
+      .section-wide { padding: 85px 20px 0; }
+
+      .photo-grid.three,
+      .photo-grid.two { grid-template-columns: 1fr; }
+      .photo-grid .span-2 { grid-column: span 1; }
+
+      .closing { padding: 100px 20px 110px; }
+
+      footer {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <header class="topbar">
+
+    <a href="index.html" class="logo">Avery Ominsky</a>
+
+    <nav class="nav">
+      <a href="index.html#work">Work</a>
+      <a href="play.html">Play</a>
+      <a href="about.html">About</a>
+    </nav>
+
+  </header>
+
+
+  <main>
+
+    <!-- HEADER -->
+
+    <section class="case-header">
+
+      <a href="index.html#work" class="back">← Work</a>
+
+      <h1 class="case-title">
+        Hilma af Klint<br>
+        Exhibition Campaign
+      </h1>
+
+      <p class="case-intro">
+        A two-poster set exploring the tension between the spiritual and the
+        physical in the life and work of Hilma af Klint.
+      </p>
+
+    </section>
+
+
+    <!-- FINAL DIPTYCH -->
+
+    <section class="hero-diptych">
+
+      <figure class="ph poster" data-label="Final poster 1">
+        <img src="hilmaafklint/hilma1.jpg" alt="Hilma af Klint bioposter, first of the two-poster set" onerror="this.hidden=true">
+      </figure>
+
+      <figure class="ph poster" data-label="Final poster 2">
+        <img src="hilmaafklint/hilma2.jpg" alt="Hilma af Klint bioposter, second of the two-poster set" onerror="this.hidden=true">
+      </figure>
+
+    </section>
+
+
+    <!-- PROJECT INFO -->
+
+    <section class="info-row">
+
+     
+
+      <div class="info-item">
+        <div class="info-label">Medium</div>
+        <div class="info-value">Collage, InDesign</div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">role</div>
+        <div class="info-value">Designer, Art Director</div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Timeline</div>
+        <div class="info-value">Fall 2026</div>
+      </div>
+
+    </section>
+
+
+    <!-- INSPIRATION -->
+
+    <section class="section-wide banner">
+
+      <div class="section-label">Inspiration</div>
+
+      <img src="exhibition.jpg" alt="Hilma af Klint’s large-scale paintings installed in a gallery, with visitors looking on">
+
+      <div class="cap">The scale and color of af Klint’s work</div>
+
+    </section>
+
+
+    <!-- RESEARCH -->
+
+    <section class="section-wide">
+
+      <div class="section-label">Research</div>
+
+      <h2>Following the Swan</h2>
+
+      <p>
+        I was drawn to af Klint’s abstract paintings, and one motif stood out:
+        the swan. Quick thumbnails led me to two swans early on.
+      </p>
+
+      <figure class="fig" style="--mw:820px">
+        <img src="process.jpg" alt="Research notes, thumbnail sketches, and early drawings of af Klint and the swans">
+        <div class="cap">Notes, thumbnails, and early sketches</div>
+      </figure>
+
+    </section>
+
+
+    <!-- PROCESS -->
+
+    <section class="section-wide">
+
+      <div class="section-label">Process</div>
+
+      <h2>Collage Over Concept</h2>
+
+      <p>
+        I built two large marker posters, collaging printed af Klint artwork
+        inside and around the swans for strong black-and-white contrast. Then I
+        digitized them and tested type in InDesign sketches.
+      </p>
+
+      <figure class="fig" style="--mw:760px">
+        <img src="drafts.jpg" alt="Marker and collage poster drafts, shown handmade and then digitized">
+        <div class="cap">Marker and collage drafts, then digitized</div>
+      </figure>
+
+    </section>
+
+
+    <!-- MOCKUP -->
+
+    <section class="section-wide">
+
+      <div class="section-label">Mockup</div>
+
+      <figure class="fig" style="--mw:1100px; margin-top:18px">
+        <img src="mockup.jpg" alt="Mockup of the Somatic and Esoteric posters as large banners on a museum facade">
+        <div class="cap">The set in context, as museum banners</div>
+      </figure>
+
+    </section>
+
+
+    <!-- DETAILS -->
+
+    <section class="section-wide">
+
+      <div class="section-label">Details</div>
+
+      <div class="photo-grid three" style="margin-top:0">
+        <figure class="ph poster" data-label="Detail 1">
+          <img src="klint-detail1.jpg" alt="Poster detail" onerror="this.hidden=true">
+        </figure>
+        <figure class="ph poster" data-label="Detail 2">
+          <img src="klint-detail2.jpg" alt="Poster detail" onerror="this.hidden=true">
+        </figure>
+        <figure class="ph poster" data-label="Detail 3">
+          <img src="klint-detail3.jpg" alt="Poster detail" onerror="this.hidden=true">
+        </figure>
+      </div>
+
+    </section>
+
+
+    <!-- REFLECTION -->
+
+    <section class="section">
+
+      <div class="section-label">Reflection</div>
+
+      <h2>Letting the Image Lead</h2>
+
+      <p>
+        I let the imagery shape the message and used type as image to show the
+        contrast between af Klint’s esoteric spirituality and its physical,
+        somatic side. Next, I want to bring more hands-on, analog making into
+        my digital work.
+      </p>
+
+    </section>
+
+
+    <!-- CLOSING STATEMENT -->
+
+    <section class="closing">
+
+      <p>
+        Her work stayed unseen for twenty years after her death.
+        <span>The posters hold that tension between the spiritual and the physical.</span>
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div>© 2026 Avery Ominsky</div>
+
+    <div class="footer-right">
+      <a href="mailto:averyominsky@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/avery-ominsky/" target="_blank">LinkedIn</a>
+    </div>
+
+  </footer>
+
+</body>
+</html>
