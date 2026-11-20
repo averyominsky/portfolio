@@ -8,19 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
- 
+
 <link rel="icon" type="image/png" href="circle.jpg">
 
-
- <meta property="og:type" content="website">
+<meta property="og:type" content="website">
 <meta property="og:url" content="https://averyominsky.github.io/portfolio/work">
 <meta property="og:title" content="Avery Ominsky — Portfolio">
-
 <meta property="og:image" content="seaartwork.jpg">
-
 <meta property="og:description" content="Communication Design student exploring UI/UX, art, and technology..">
-
-
 
 <style>
   :root{
@@ -36,10 +31,11 @@
     --sans:'DM Sans', sans-serif;
   }
   *{box-sizing:border-box;}
-html{
+  html{
     scroll-behavior:smooth;
     scroll-padding-top:80px;
-  }  body{
+  }
+  body{
     margin:0;
     background:var(--bg);
     color:var(--ink);
@@ -368,13 +364,10 @@ html{
     margin:0 auto;
   }
 
-  /* ---------- Social tiles row ---------- */
-
-
   .fine{
     display:block;
     text-align:center;
-    margin-top:50px;
+    margin-top:12px;
     font-size:12px;
     opacity:0.65;
   }
@@ -403,23 +396,17 @@ html{
   }
   #scrollHint.hide{opacity:0; pointer-events:none;}
 
-
-
-
-.work-media {
-  position: relative;
-  overflow: hidden;
-}
-
-.work-media img,
-
-.work-media video {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
+  .work-media{
+    position:relative;
+    overflow:hidden;
+  }
+  .work-media img,
+  .work-media video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
 
   .work-divider{
     display:flex;
@@ -438,323 +425,154 @@ html{
     background:var(--line);
   }
 
-
-
-
-
-
-.footer-contact{
-  text-align:center;
-  margin-top:50px;
-  font-size:12px;
-  letter-spacing:.4px;
-  opacity:.85;
-}
-
-.footer-contact a{
-  color:#fff;
-  text-decoration:none;
-  transition:opacity .2s ease;
-}
-
-.footer-contact a:hover{
-  opacity:.65;
-}
-
-.fine{
-  display:block;
-  text-align:center;
-  margin-top:12px;
-  font-size:12px;
-  opacity:0.65;
-}
-
-
-
-/* ---------- Phone mockup for Insider Trading ---------- */
-/* ---------- Realistic iPhone Mockup ---------- */
-
-.phone-media {
-  width: 100%;
-  aspect-ratio: 16 / 11;
-  border-radius: 18px;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-background: #dcecfa;
-  margin-bottom: 18px;
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-
-.work-card:hover .phone-media {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(28,18,16,0.16);
-}
-
-
-/* PHONE BODY */
-
-.phone-frame {
-  height: 91%;
-  aspect-ratio: 9 / 19.5;
-
-  position: relative;
-
-  /* outer phone */
-  background: #171717;
-
-  border: 1px solid #333;
-
-  border-radius: 38px;
-
-  padding: 4px;
-
-  box-shadow:
-    0 25px 50px rgba(28,18,16,0.25),
-    0 8px 18px rgba(28,18,16,0.18),
-    inset 0 0 0 1px rgba(255,255,255,0.08);
-
-  overflow: visible;
-}
-
-
-/* SCREEN */
-
-.phone-screen {
-  width: 100%;
-  height: 100%;
-
-  position: relative;
-
-  overflow: hidden;
-
-  border-radius: 33px;
-
-  background: #fff;
-
-  /* glass edge */
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.18),
-    inset 0 0 8px rgba(0,0,0,0.12);
-}
-
-
-/* IMAGE / VIDEO INSIDE PHONE */
-
-.phone-screen img,
-.phone-screen video {
-  width: 100%;
-  height: 100%;
-
-  display: block;
-
-  object-fit: cover;
-}
-
-
-/* ---------- Dynamic Island ---------- */
-
-.phone-frame::before {
-  content: '';
-
-  position: absolute;
-
-  top: 10px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  width: 32%;
-  height: 18px;
-
-  background: #050505;
-
-  border-radius: 999px;
-
-  z-index: 10;
-
-  box-shadow:
-    inset 0 1px 2px rgba(255,255,255,0.05),
-    0 1px 2px rgba(0,0,0,0.4);
-}
-
-
-/* ---------- Camera highlight ---------- */
-
-.phone-frame::after {
-  content: '';
-
-  position: absolute;
-
-  top: 16px;
-  right: 29%;
-
-  width: 4px;
-  height: 4px;
-
-  background: rgba(255,255,255,0.12);
-
-  border-radius: 50%;
-
-  z-index: 11;
-}
-
-
-/* ---------- Side buttons ---------- */
-
-.phone-frame {
-  --button-color: #252525;
-}
-
-
-/* volume buttons */
-
-.phone-frame .side-button {
-  position: absolute;
-
-  left: -4px;
-
-  width: 3px;
-
-  background: var(--button-color);
-
-  border-radius: 3px;
-}
-
-
-/* Create buttons using pseudo-elements */
-
-.phone-frame {
-  isolation: isolate;
-}
-
-.phone-frame .side-button {
-  display: none;
-}
-
-.phone-frame {
-  --dummy: none;
-}
-
-
-/* Left side buttons */
-
-.phone-frame::marker {
-  display: none;
-}
-
-
-/* ---------- Glass reflection ---------- */
-
-.phone-screen::after {
-  content: '';
-
-  position: absolute;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  border-radius: 33px;
-
-  background:
-    linear-gradient(
+  .footer-contact{
+    text-align:center;
+    margin-top:50px;
+    font-size:12px;
+    letter-spacing:.4px;
+    opacity:.85;
+  }
+  .footer-contact a{
+    color:#fff;
+    text-decoration:none;
+    transition:opacity .2s ease;
+  }
+  .footer-contact a:hover{opacity:.65;}
+
+  /* ---------- Realistic iPhone mockup ---------- */
+  .phone-media{
+    width:100%;
+    aspect-ratio:16/11;
+    border-radius:18px;
+    overflow:hidden;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#dcecfa;
+    margin-bottom:18px;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .work-card:hover .phone-media{
+    transform:translateY(-4px);
+    box-shadow:0 20px 40px rgba(28,18,16,0.16);
+  }
+  .phone-frame{
+    height:91%;
+    aspect-ratio:9/19.5;
+    position:relative;
+    background:#171717;
+    border:1px solid #333;
+    border-radius:38px;
+    padding:4px;
+    box-shadow:
+      0 25px 50px rgba(28,18,16,0.25),
+      0 8px 18px rgba(28,18,16,0.18),
+      inset 0 0 0 1px rgba(255,255,255,0.08);
+    overflow:visible;
+    isolation:isolate;
+  }
+  .phone-screen{
+    width:100%;
+    height:100%;
+    position:relative;
+    overflow:hidden;
+    border-radius:33px;
+    background:#fff;
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.18),
+      inset 0 0 8px rgba(0,0,0,0.12);
+  }
+  .phone-screen img,
+  .phone-screen video{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+  }
+  /* Dynamic Island */
+  .phone-frame::before{
+    content:'';
+    position:absolute;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%);
+    width:32%;
+    height:18px;
+    background:#050505;
+    border-radius:999px;
+    z-index:10;
+    box-shadow:
+      inset 0 1px 2px rgba(255,255,255,0.05),
+      0 1px 2px rgba(0,0,0,0.4);
+  }
+  /* Camera highlight */
+  .phone-frame::after{
+    content:'';
+    position:absolute;
+    top:16px;
+    right:29%;
+    width:4px;
+    height:4px;
+    background:rgba(255,255,255,0.12);
+    border-radius:50%;
+    z-index:11;
+  }
+  /* Glass reflection */
+  .phone-screen::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    border-radius:33px;
+    background:linear-gradient(
       120deg,
       rgba(255,255,255,0.08),
       transparent 25%,
       transparent 75%,
       rgba(255,255,255,0.025)
     );
-
-  z-index: 8;
-}
-
-
-/* ---------- Mobile sizing ---------- */
-
-@media (max-width: 640px) {
-
-  .phone-frame {
-    height: 88%;
-    border-radius: 22px;
-    padding: 4px;
+    z-index:8;
+  }
+  @media (max-width:640px){
+    .phone-frame{
+      height:88%;
+      border-radius:22px;
+      padding:4px;
+    }
+    .phone-screen,
+    .phone-screen::after{border-radius:17px;}
+    .phone-frame::before{
+      top:9px;
+      height:15px;
+    }
   }
 
-  .phone-screen,
-  .phone-screen::after {
-    border-radius: 17px;
+  /* ---------- Character fade gallery ---------- */
+  .fade-gallery{
+    position:relative;
+    overflow:hidden;
   }
-
-  .phone-frame::before {
-    top: 9px;
-    height: 15px;
+  .fade-gallery img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    transform:scale(0.99);
+    opacity:0;
+    animation:fadeImages 9s infinite;
   }
-
-}
-
-
-
-
-
-  /* ---------- character fade gallery ---------- */
-
-.fade-gallery {
-  position: relative;
-  overflow: hidden;
-}
-
-.fade-gallery img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transform: scale(0.99);
-  opacity: 0;
-  animation: fadeImages 9s infinite;
-}
-
-/* Image timing */
-.fade-gallery img:nth-child(1) {
-  animation-delay: 0s;
-}
-
-.fade-gallery img:nth-child(2) {
-  animation-delay: 3s;
-}
-
-.fade-gallery img:nth-child(3) {
-  animation-delay: 6s;
-}
-
-@keyframes fadeImages {
-  0% {
-    opacity: 0;
+  .fade-gallery img:nth-child(1){animation-delay:0s;}
+  .fade-gallery img:nth-child(2){animation-delay:3s;}
+  .fade-gallery img:nth-child(3){animation-delay:6s;}
+  @keyframes fadeImages{
+    0%{opacity:0;}
+    10%{opacity:1;}
+    30%{opacity:1;}
+    40%{opacity:0;}
+    100%{opacity:0;}
   }
-
-  10% {
-    opacity: 1;
-  }
-
-  30% {
-    opacity: 1;
-  }
-
-  40% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-
-
-
-
 </style>
 </head>
 <body>
@@ -769,8 +587,8 @@ background: #dcecfa;
 <div class="mobile-nav" id="mobileNav">
   <button class="close-btn" id="closeNav" aria-label="Close menu">✕</button>
   <a href="#work">Work</a>
-  <a href="play.html">Archive</a>
-<a href="about.html">About</a>
+  <a href="archive.html">Archive</a>
+  <a href="about.html">About</a>
 </div>
 
 <div id="page">
@@ -778,8 +596,8 @@ background: #dcecfa;
   <a class="logo" href="#top">Avery Ominsky</a>
   <nav class="desktop-nav">
     <a href="#work">Work</a>
-    <a href="play.html">Archive</a>
-<a href="about.html">About</a>
+    <a href="archive.html">Archive</a>
+    <a href="about.html">About</a>
   </nav>
   <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span></span></button>
 </header>
@@ -802,67 +620,42 @@ background: #dcecfa;
 
     <div class="work-list">
 
+      <a class="work-card" href="anu.html">
+        <div class="phone-media">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <video autoplay muted loop playsinline preload="auto">
+                <source src="anumobileapp.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <div class="work-meta">Mobile App · Summer 2026</div>
+        <div class="work-title">Rethinking the Museum Visit</div>
+      </a>
 
-      
+      <a class="work-card" href="klint.html">
+        <div class="work-media">
+          <img src="hilmaafklint/mockup.jpg" alt="Somatic and Esoteric posters mocked up as banners on a museum facade" loading="lazy">
+        </div>
+        <div class="work-meta">Marketing Design · Fall 2026</div>
+        <div class="work-title">Hilma af Klint: Exhibition Campaign</div>
+      </a>
 
-<a class="work-card" href="anu.html">
-
-  <div class="phone-media">
-
-    <div class="phone-frame">
-
-      <div class="phone-screen">
-
-        <video autoplay muted loop playsinline preload="auto">
-          <source src="anumobileapp.mp4" type="video/mp4">
-        </video>
-
-      </div>
+      <a class="work-card" href="character.html">
+        <div class="work-media fade-gallery">
+          <img src="disco2.jpg" alt="Character illustration sheet" loading="lazy">
+          <img src="disco1.jpg" alt="Character development sheet" loading="lazy">
+          <img src="disco3.jpg" alt="Character identity sketches" loading="lazy">
+        </div>
+        <div class="work-meta">ILLUSTRATION · Spring 2026</div>
+        <div class="work-title">Studio 54: Culture &amp; Character</div>
+      </a>
 
     </div>
-
-  </div>
-
-  <div class="work-meta">Mobile App · Summer 2026</div>
-
-  <div class="work-title">Rethinking the Museum Visit</div>
-
-</a>
-
-
-<a class="work-card" href="klint.html">
-  <div class="work-media">
-    <img src="hilmaafklint/mockup.jpg" alt="Somatic and Esoteric posters mocked up as banners on a museum facade" loading="lazy">
-  </div>
-
-  <div class="work-meta">Marketing Design · Fall 2026</div>
-  <div class="work-title">Hilma af Klint: Exhibition Campaign</div>
-</a>
-
-
-<a class="work-card" href="character.html">
-  <div class="work-media fade-gallery">
-
-    <img src="disco2.jpg" alt="Character illustration sheet" loading="lazy">
-    <img src="disco1.jpg" alt="Character development sheet" loading="lazy">
-    <img src="disco3.jpg" alt="Character identity sketches" loading="lazy">
-
-  </div>
-
-  <div class="work-meta">ILLUSTRATION · Spring 2026</div>
-  <div class="work-title">Studio 54: Culture &amp; Character</div>
-</a>
-
-
-
-
-
-
-</div>
   </section>
 </main>
 </div>
-
 
 <footer id="siteFooter">
   <div class="footer-inner">
@@ -872,62 +665,56 @@ background: #dcecfa;
         <span class="label">Last updated</span>
         <span class="value" id="lastUpdated">July 18th, 2026</span>
       </div>
-   <div class="item align-right">
-  <span class="label">Currently</span>
-  <span class="value" style="display:flex; align-items:center; gap:7px;">
-    <span id="weatherIcon" style="display:flex; width:16px; height:16px;"></span>
-    <span id="clock">Philadelphia, —:—</span>
-  </span>
-</div>
+      <div class="item align-right">
+        <span class="label">Currently</span>
+        <span class="value" style="display:flex; align-items:center; gap:7px;">
+          <span id="weatherIcon" style="display:flex; width:16px; height:16px;"></span>
+          <span id="clock">Philadelphia, —:—</span>
+        </span>
+      </div>
     </div>
 
-    
-<div class="footer-contact">
-  <a href="mailto:averyominsky@gmail.com">averyominsky@gmail.com</a>
-  <span> | </span>
-  <a href="https://www.linkedin.com/in/avery-ominsky/" target="_blank">LinkedIn</a>
-</div>
-
+    <div class="footer-contact">
+      <a href="mailto:averyominsky@gmail.com">averyominsky@gmail.com</a>
+      <span> | </span>
+      <a href="https://www.linkedin.com/in/avery-ominsky/" target="_blank">LinkedIn</a>
+    </div>
 
     <span class="fine">© 2026 Avery Ominsky</span>
   </div>
 </footer>
 
 <script>
+  // ---------- Stay at the top when arriving with a #work link from another page ----------
+  if (location.hash === '#work') {
+    history.replaceState(null, '', location.pathname + location.search);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }
+
   // ---------- Intro fade ----------
-// ---------- Intro fade ----------
-const intro = document.getElementById('intro');
+  const intro = document.getElementById('intro');
 
-function dismissIntro(){
+  function dismissIntro(){
+    intro.classList.add('fade');
+    setTimeout(() => {
+      intro.style.display = 'none';
+    }, 1000);
+  }
 
-  intro.classList.add('fade');
-
-  setTimeout(() => {
+  // Only show intro on the first visit
+  if (sessionStorage.getItem('introShown')) {
     intro.style.display = 'none';
-  }, 1000);
+  } else {
+    sessionStorage.setItem('introShown', 'true');
+    intro.addEventListener('click', dismissIntro);
+    intro.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        dismissIntro();
+      }
+    });
+    setTimeout(dismissIntro, 2200);
+  }
 
-}
-
-// Only show intro on the first visit
-if (sessionStorage.getItem('introShown')) {
-
-  intro.style.display = 'none';
-
-} else {
-
-  sessionStorage.setItem('introShown', 'true');
-
-  intro.addEventListener('click', dismissIntro);
-
-  intro.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      dismissIntro();
-    }
-  });
-
-  setTimeout(dismissIntro, 2200);
-
-}
   // ---------- Mobile nav ----------
   const menuBtn = document.getElementById('menuBtn');
   const mobileNav = document.getElementById('mobileNav');
@@ -1001,53 +788,40 @@ if (sessionStorage.getItem('introShown')) {
   }
   updateWeather();
   setInterval(updateWeather, 15 * 60 * 1000);
-  
-  
-  
-// ---------- Live clock (Philadelphia) ----------
-function updateClock(){
-  const now = new Date();
-  const fmt = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'America/New_York',
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true
-  });
 
-  document.getElementById('clock').textContent =
-    'Philadelphia, ' + fmt.format(now);
-}
+  // ---------- Live clock (Philadelphia) ----------
+  function updateClock(){
+    const now = new Date();
+    const fmt = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/New_York',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    });
+    document.getElementById('clock').textContent = 'Philadelphia, ' + fmt.format(now);
+  }
+  updateClock();
+  setInterval(updateClock, 30000);
 
-updateClock();
-setInterval(updateClock, 30000);
-
-
-// ---------- Auto last-updated date ----------
-function updateLastModified(){
-  const d = new Date(document.lastModified);
-
-  const fmt = new Intl.DateTimeFormat('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric'
-  });
-
-  const day = d.getDate();
-
-  const suffix = (day % 10 === 1 && day !== 11) ? 'st'
-               : (day % 10 === 2 && day !== 12) ? 'nd'
-               : (day % 10 === 3 && day !== 13) ? 'rd'
-               : 'th';
-
-  const parts = fmt.formatToParts(d);
-  const month = parts.find(p => p.type === 'month').value;
-  const year = parts.find(p => p.type === 'year').value;
-
-  document.getElementById('lastUpdated').textContent =
-    `${month} ${day}${suffix}, ${year}`;
-}
-
-updateLastModified();
+  // ---------- Auto last-updated date ----------
+  function updateLastModified(){
+    const d = new Date(document.lastModified);
+    const fmt = new Intl.DateTimeFormat('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    });
+    const day = d.getDate();
+    const suffix = (day % 10 === 1 && day !== 11) ? 'st'
+                 : (day % 10 === 2 && day !== 12) ? 'nd'
+                 : (day % 10 === 3 && day !== 13) ? 'rd'
+                 : 'th';
+    const parts = fmt.formatToParts(d);
+    const month = parts.find(p => p.type === 'month').value;
+    const year = parts.find(p => p.type === 'year').value;
+    document.getElementById('lastUpdated').textContent = `${month} ${day}${suffix}, ${year}`;
+  }
+  updateLastModified();
 
   // ---------- Footer sits fixed underneath; page reserves space so it's revealed at the end ----------
   const page = document.getElementById('page');
@@ -1070,22 +844,7 @@ updateLastModified();
       scrollHint.classList.toggle('hide', nearBottom() || window.scrollY > 250);
     }, { passive:true });
   }
-
-
-
-
-
-
 </script>
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>
