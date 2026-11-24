@@ -40,12 +40,12 @@ a{text-decoration:none;color:inherit}
 @media(max-width:760px){.desktop-nav{display:none}.menu-btn{display:flex}}
 
 /* HEADER + GRID */
-.play-header{max-width:760px;margin:0 auto;padding:64px 32px 40px;animation:fadeUp .7s ease both}
+.play-header{max-width:1360px;margin:0 auto;padding:64px 40px 40px;animation:fadeUp .7s ease both}
 .play-title{font-family:var(--serif);font-optical-sizing:auto;font-weight:500;font-size:clamp(32px,6vw,56px);line-height:1.1;margin:0 0 18px}
 .play-title em{font-style:italic;color:var(--red)}
 .play-desc{max-width:480px;font-size:15.5px;line-height:1.75;color:var(--muted)}
-.grid-stage{max-width:1100px;margin:0 auto;padding:20px 32px 110px;animation:fadeUp .9s ease both .1s}
-.play-grid{columns:3;column-gap:20px}
+.grid-stage{max-width:1360px;margin:0 auto;padding:20px 40px 110px;animation:fadeUp .9s ease both .1s}
+.play-grid{columns:3;column-gap:28px}
 @media(max-width:900px){.play-grid{columns:2}}
 @media(max-width:560px){.play-grid{columns:1}}
 
@@ -176,6 +176,18 @@ body.panel-open .play-grid{columns:2;column-gap:14px}
       - data-photos = comma-separated extra files (angles, context shots), e.g. data-photos="shoe-angle.jpg, shoe-studio.jpg"
     -->
     <div class="play-grid" id="playGrid">
+
+      <div class="card" data-desc="[Write 2–3 sentences about this piece.]" style="--float-dur:5.8s;--float-delay:.1s;--float-y:-13px;--rot-a:-.3deg;--rot-b:.35deg;">
+        <div class="card-inner"><img src="climate1.jpg" alt="Climate"></div>
+        <div class="card-caption"><p class="card-title">Climate</p><p class="card-sub">[Medium]</p></div>
+      </div>
+
+      <div class="card" data-desc="[Write 2–3 sentences about the poster and how airlines used design to say welcome.]" style="--float-dur:5.2s;--float-delay:0s;--float-y:-12px;--rot-a:-.4deg;--rot-b:.35deg;">
+        <div class="card-inner">
+          <img src="airlineposter.jpg" alt="Now Boarding airline poster">
+        </div>
+        <div class="card-caption"><p class="card-title">Now Boarding</p><p class="card-sub">A1 poster</p></div>
+      </div>
 
       <div class="card video-card" data-desc="[Write 2–3 sentences about Standby Mode: the idea, the problem it solves, your process.]" style="--float-dur:5.4s;--float-delay:.3s;--float-y:-12px;--rot-a:-.3deg;--rot-b:.4deg;">
         <div class="card-inner"><video src="standby.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
