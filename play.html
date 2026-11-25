@@ -45,12 +45,16 @@ a{text-decoration:none;color:inherit}
 .play-title em{font-style:italic;color:var(--red)}
 .play-desc{max-width:480px;font-size:15.5px;line-height:1.75;color:var(--muted)}
 .grid-stage{max-width:1360px;margin:0 auto;padding:20px 40px 110px;animation:fadeUp .9s ease both .1s}
-.play-grid{columns:3;column-gap:28px}
-@media(max-width:900px){.play-grid{columns:2}}
-@media(max-width:560px){.play-grid{columns:1}}
+
+/* GRID: cards fill left to right (1, 2, 3 across the first row, then the next row...).
+   The script below wraps them into columns so the staggered look stays, but the ORDER is across, not down. */
+.play-grid{--cols:3;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));column-gap:28px;align-items:start}
+.play-grid .col{display:flex;flex-direction:column;min-width:0}
+@media(max-width:900px){.play-grid{--cols:2}}
+@media(max-width:560px){.play-grid{--cols:1}}
 
 /* CARD */
-.card{display:block;width:100%;position:relative;cursor:pointer;break-inside:avoid;margin-bottom:32px;animation:floatCard var(--float-dur,5s) ease-in-out var(--float-delay,0s) infinite alternate;transition:transform .3s;will-change:transform}
+.card{display:block;width:100%;position:relative;cursor:pointer;margin-bottom:32px;animation:floatCard var(--float-dur,5s) ease-in-out var(--float-delay,0s) infinite alternate;transition:transform .3s;will-change:transform}
 @keyframes floatCard{from{transform:translateY(0) rotate(var(--rot-a,-.35deg))}to{transform:translateY(var(--float-y,-12px)) rotate(var(--rot-b,.35deg))}}
 .card:hover{animation-play-state:paused;transform:translateY(-6px) rotate(0) !important}
 .card-inner{border-radius:var(--radius);border:1px solid var(--line);background:var(--red-tint);overflow:hidden;position:relative;box-shadow:0 6px 20px rgba(28,18,16,.06);transition:box-shadow .3s,border-color .25s}
@@ -68,6 +72,28 @@ a{text-decoration:none;color:inherit}
 .fade-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
 .fade-card img+img{opacity:0;will-change:opacity;animation:topFade 10s ease-in-out infinite;animation-delay:var(--d,0s)}
 @keyframes topFade{0%,38%{opacity:0}50%,88%{opacity:1}100%{opacity:0}}
+
+/* Cards with a video: video on the left, description to its right, both starting on the same top line */
+.panel{container-type:inline-size}
+.info:has(.videos:not(:empty)){display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"title title" "medium medium" "vid desc";column-gap:28px;align-items:start}
+.info:has(.videos:not(:empty)) .ptitle{grid-area:title}
+.info:has(.videos:not(:empty)) .medium{grid-area:medium;margin-bottom:20px}
+.info:has(.videos:not(:empty)) .desc{grid-area:desc;margin-top:0}
+.info:has(.videos:not(:empty)) .videos{grid-area:vid;margin-top:0}
+.info:has(.videos:not(:empty)) .videos video{width:auto;height:auto;max-width:60cqw;max-height:clamp(340px,56vh,560px)}
+/* narrow panel (phones): stack them again */
+@container (max-width:520px){
+  .info:has(.videos:not(:empty)){display:block}
+  .info:has(.videos:not(:empty)) .desc{margin-top:14px}
+  .info:has(.videos:not(:empty)) .videos{margin-top:24px}
+  .info:has(.videos:not(:empty)) .videos video{height:clamp(340px,56vh,560px);max-width:100%}
+}
+
+/* videos shown in the panel, under the description */
+.videos{margin-top:24px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.videos:empty{display:none}
+/* same height as the main poster above (see .main img), so it isn't oversized when the panel opens */
+.videos video{display:block;width:auto;height:clamp(340px,56vh,560px);max-width:100%;border-radius:14px;border:1px solid var(--line);background:#000}
 
 /* SIDE PANEL: covers a little over half; the left side stays scrollable and clickable */
 .panel{position:fixed;top:0;right:0;height:100%;width:max(50vw,440px);max-width:100%;background:#fff;border-left:1px solid var(--line);z-index:70;transform:translateX(100%);transition:transform .4s cubic-bezier(.65,0,.35,1);display:flex;flex-direction:column;box-shadow:-12px 0 40px rgba(28,18,16,.08)}
@@ -91,7 +117,7 @@ a{text-decoration:none;color:inherit}
 .drop b{font-size:24px;font-weight:400}
 body.panel-open .play-header{margin:0;max-width:50vw;padding-left:24px;padding-right:24px}
 body.panel-open .grid-stage{margin:0;max-width:none;width:50vw;padding:20px 24px 110px}
-body.panel-open .play-grid{columns:2;column-gap:14px}
+@media(min-width:901px){body.panel-open .play-grid{--cols:2;column-gap:14px}}
 @media(max-width:900px){
   .panel{width:100%}
   body.panel-open{overflow:hidden}
@@ -144,6 +170,7 @@ body.panel-open .play-grid{columns:2;column-gap:14px}
         <h2 class="ptitle" id="pTitle"></h2>
         <p class="medium" id="pMedium"></p>
         <p class="desc" id="pDesc"></p>
+        <div class="videos" id="pVideos"></div>
       </div>
     </div>
     <div class="photos" id="pPhotos"></div>
@@ -169,24 +196,29 @@ body.panel-open .play-grid{columns:2;column-gap:14px}
 
   <section class="grid-stage">
     <!--
+      ORDER: cards fill left to right. The 1st card goes top-left, the 2nd next to it, the 3rd next, then the 4th starts the next row.
+      So to place a new piece, just put its card in the order you want it to appear, reading left to right.
+
       HOW EACH CARD FEEDS THE PANEL
       - title / medium come from .card-title / .card-sub
-      - data-desc = the short paragraph in the panel
+      - data-desc = the short paragraph in the panel. For italics wrap words in <em>...</em>, e.g. <em>MIT Technology Review</em>
       - first image = main image; any other images in the card (the crossfade ones) become extra photos
+      - data-videos = comma-separated video files, shown under the description (e.g. data-videos="airline.mp4")
+      - data-photo-cols = how many columns the extra photos use (default 2). Use 1 for wide spreads so they show full width.
       - data-photos = comma-separated extra files (angles, context shots), e.g. data-photos="shoe-angle.jpg, shoe-studio.jpg"
     -->
     <div class="play-grid" id="playGrid">
 
-      <div class="card" data-desc="[Write 2–3 sentences about this piece.]" style="--float-dur:5.8s;--float-delay:.1s;--float-y:-13px;--rot-a:-.3deg;--rot-b:.35deg;">
-        <div class="card-inner"><img src="climate1.jpg" alt="Climate"></div>
-        <div class="card-caption"><p class="card-title">Climate</p><p class="card-sub">[Medium]</p></div>
-      </div>
-
-      <div class="card" data-desc="[Write 2–3 sentences about the poster and how airlines used design to say welcome.]" style="--float-dur:5.2s;--float-delay:0s;--float-y:-12px;--rot-a:-.4deg;--rot-b:.35deg;">
+      <div class="card" data-desc="An exploration of the Golden Age of air travel, proposed as an exhibition at The Met. Through typographic storytelling, information hierarchy, and editorial organization, the project traces the evolution of aviation from an era of glamour to modern commercial travel." data-videos="airline.mp4" style="--float-dur:5.2s;--float-delay:0s;--float-y:-12px;--rot-a:-.4deg;--rot-b:.35deg;">
         <div class="card-inner">
           <img src="airlineposter.jpg" alt="Now Boarding airline poster">
         </div>
-        <div class="card-caption"><p class="card-title">Now Boarding</p><p class="card-sub">A1 poster</p></div>
+        <div class="card-caption"><p class="card-title">Editorial Design</p><p class="card-sub">Typography, Motion</p></div>
+      </div>
+
+      <div class="card" data-desc="An editorial insert for <em>MIT Technology Review</em> exploring climate change through environmental datasets. The project transforms scientific data into accessible visual narratives, using information hierarchy, data visualization, and editorial storytelling to communicate environmental change and its impact." data-photos="climate2.jpg, climate3.jpg, climate4.jpg" data-photo-cols="1" style="--float-dur:5.8s;--float-delay:.1s;--float-y:-13px;--rot-a:-.3deg;--rot-b:.35deg;">
+        <div class="card-inner"><img src="climate1.jpg" alt="Climate"></div>
+        <div class="card-caption"><p class="card-title">Data Visualization</p><p class="card-sub">InDesign, Analog Media</p></div>
       </div>
 
       <div class="card video-card" data-desc="[Write 2–3 sentences about Standby Mode: the idea, the problem it solves, your process.]" style="--float-dur:5.4s;--float-delay:.3s;--float-y:-12px;--rot-a:-.3deg;--rot-b:.4deg;">
@@ -300,10 +332,26 @@ function zoom(src){lightboxImg.src=src;lightbox.classList.add("active")}
 lightbox.addEventListener("click",()=>lightbox.classList.remove("active"));
 
 /* ── SIDE PANEL ── */
+/* cards is captured in the order you wrote them in the HTML (reading left to right), and the panel's ← → buttons follow that order */
 const cards=[...document.querySelectorAll(".play-grid .card")];
-const panel=document.getElementById("panel"),pMain=document.getElementById("pMain"),pPhotos=document.getElementById("pPhotos"),fileInput=document.getElementById("fileInput");
+const panel=document.getElementById("panel"),pMain=document.getElementById("pMain"),pPhotos=document.getElementById("pPhotos"),pVideos=document.getElementById("pVideos"),fileInput=document.getElementById("fileInput");
 const EDIT=new URLSearchParams(location.search).has("edit"); /* add ?edit to the URL to show the upload tile */
 let cur=0;
+
+/* ── GRID: fill left to right ──
+   Cards are dealt into columns one at a time (1st → column 1, 2nd → column 2, 3rd → column 3, 4th → column 1 ...),
+   so the order reads across each row but the staggered, uneven-height look is kept. */
+const grid=document.getElementById("playGrid");
+function layoutGrid(){
+  const n=parseInt(getComputedStyle(grid).getPropertyValue("--cols"))||3;
+  if(grid.dataset.cols===String(n))return;
+  grid.dataset.cols=n;
+  const cols=Array.from({length:n},()=>{const d=document.createElement("div");d.className="col";return d});
+  cards.forEach((c,i)=>cols[i%n].appendChild(c));
+  grid.replaceChildren(...cols);
+}
+layoutGrid();
+window.addEventListener("resize",layoutGrid);
 
 function addPhoto(src,beforeEl){
   const wrap=document.createElement("div"),img=document.createElement("img");
@@ -317,6 +365,8 @@ function readCard(card){
     medium:card.querySelector(".card-sub").textContent,
     desc:card.dataset.desc||"",
     video:vid?vid.getAttribute("src"):null,
+    videos:card.dataset.videos?card.dataset.videos.split(",").map(s=>s.trim()).filter(Boolean):[],
+    photoCols:card.dataset.photoCols||"",
     main:imgs.length&&!vid?imgs[0].getAttribute("src"):null,
     extra:[...imgs.slice(vid?0:1).map(i=>i.getAttribute("src")),...(card.dataset.photos?card.dataset.photos.split(",").map(s=>s.trim()).filter(Boolean):[])]
   };
@@ -328,8 +378,11 @@ function render(){
   else{const i=document.createElement("img");i.src=d.main;i.alt=d.title;i.addEventListener("click",()=>zoom(i.src));pMain.appendChild(i)}
   document.getElementById("pTitle").textContent=d.title;
   document.getElementById("pMedium").textContent=d.medium;
-  document.getElementById("pDesc").textContent=d.desc;
+  document.getElementById("pDesc").innerHTML=d.desc; /* innerHTML so you can use <em>italics</em> in a description */
+  pVideos.innerHTML="";
+  d.videos.forEach(src=>{const v=document.createElement("video");v.src=src;v.controls=true;v.loop=true;v.muted=true;v.autoplay=true;v.playsInline=true;v.preload="metadata";pVideos.appendChild(v)});
   pPhotos.innerHTML="";
+  pPhotos.style.columns=d.photoCols;
   d.extra.forEach(s=>addPhoto(s));
   if(EDIT){
     const drop=document.createElement("div");drop.className="drop";drop.innerHTML="<b>+</b>Add photo";
@@ -348,8 +401,8 @@ function addFiles(files){
 }
 fileInput.addEventListener("change",()=>{addFiles(fileInput.files);fileInput.value=""});
 
-function openPanel(i){cur=i;render();panel.classList.add("on");panel.setAttribute("aria-hidden","false");document.body.classList.add("panel-open")}
-function closePanel(){panel.classList.remove("on");panel.setAttribute("aria-hidden","true");document.body.classList.remove("panel-open");pMain.innerHTML="";cards.forEach(c=>c.classList.remove("sel"))}
+function openPanel(i){cur=i;render();panel.classList.add("on");panel.setAttribute("aria-hidden","false");document.body.classList.add("panel-open");layoutGrid()}
+function closePanel(){panel.classList.remove("on");panel.setAttribute("aria-hidden","true");document.body.classList.remove("panel-open");pMain.innerHTML="";pVideos.innerHTML="";cards.forEach(c=>c.classList.remove("sel"));layoutGrid()}
 function step(n){cur=(cur+n+cards.length)%cards.length;render()}
 
 cards.forEach((c,i)=>{c.tabIndex=0;c.addEventListener("click",()=>openPanel(i));c.addEventListener("keydown",e=>{if(e.key==="Enter")openPanel(i)})});
